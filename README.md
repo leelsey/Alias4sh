@@ -2,12 +2,29 @@
 
 ### Easily use shell through alias
 
-## Support enviroment
+## Support enviroments
 - macOS
     - zsh
 - Linux
     - bash
     - zsh
+
+## Usage
+### 1) Install Alias4sh
+Copy and past on terminal
+```bash
+wget -c https://github.com/leelsey/Alias4sh/releases/download/v0.1/install.sh -O alias4sh.sh && sh alias4sh.sh && rm -f alias4sh.sh
+```
+### 2) Reload shell resource file
+#### Zsh
+```bash
+source ~/.zshrc
+```
+#### Bash
+```bash
+source ~/.bashrc
+```
+### 3) Use alias command! You can check in [Alias list](#alias-list).
 
 ## Alias list
 ### Common
