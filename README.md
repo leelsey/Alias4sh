@@ -51,6 +51,7 @@ source ~/.bashrc
 |cls|clear|
 |dfh|df -h|
 |duh|du -h|
+|cdh|cd ~|
 |p|cd ..|
 |f|finger|
 |j|jobs -l|
