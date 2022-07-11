@@ -60,12 +60,12 @@ main() {
 shrc() {
     if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
         echo '-> Add on .zshrc file...'
-        echo '\n#Alias4sh' >> ${ZDOTDIR:-~}/.zshrc
+        echo '\n# Alias4sh' >> ${ZDOTDIR:-~}/.zshrc
         echo 'source ~/.config/alias4sh/aliasrc \n' >> ${ZDOTDIR:-~}/.zshrc
         echo '\nDone! Try "source ~/.zshrc" or  to load the aliases. \n'
     elif [ -n "`$SHELL -c 'echo $BASH_VERSION'`" ]; then
         echo '-> Add on .bashrc file...'
-        echo '\n#Alias4sh' >> ${ZDOTDIR:-~}/.bashrc
+        echo '\n# Alias4sh' >> ${ZDOTDIR:-~}/.bashrc
         echo 'source ~/.config/alias4sh/aliasrc \n' >> ${ZDOTDIR:-~}/.bashrc
         echo '\nDone! Try "source ~/.bashrc" or  to load the aliases. \n'
     fi
