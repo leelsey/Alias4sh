@@ -57,7 +57,6 @@ source ~/.bashrc
 |j|jobs -l|
 |d|date|
 |c|cal|
-|curl|curl -w '\n'|
 ### For macOS
 |Aliased cmd|Original cmd|
 |---|---|
@@ -81,6 +80,7 @@ source ~/.bashrc
 ### Disabled
 |Aliased cmd|Original cmd|
 |---|---|
+|curl|curl -w '\n'|
 |rm|rm -i|
 |cp|cp -i|
 |mv|mv -i|

@@ -50,7 +50,7 @@ main() {
     echo 'alias j="jobs -l"' >> ${ZDOTDIR:-~}/.config/alias4sh/aliasrc
     echo 'alias d="date"' >> ${ZDOTDIR:-~}/.config/alias4sh/aliasrc
     echo 'alias c="cal"' >> ${ZDOTDIR:-~}/.config/alias4sh/aliasrc
-    echo 'alias curl="curl -w '\'\\'\n'\''"' >> ${ZDOTDIR:-~}/.config/alias4sh/aliasrc
+    echo '#alias curl="curl -w '\'\\'\n'\''"' >> ${ZDOTDIR:-~}/.config/alias4sh/aliasrc
     echo '#alias rm="rm -i"' >> ${ZDOTDIR:-~}/.config/alias4sh/aliasrc
     echo '#alias cp="cp -i"' >> ${ZDOTDIR:-~}/.config/alias4sh/aliasrc
     echo '#alias mv="mv -i"' >> ${ZDOTDIR:-~}/.config/alias4sh/aliasrc
