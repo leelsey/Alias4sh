@@ -10,13 +10,13 @@ main() {
     begin
     echo 'alias shrl="exec $SHELL"' >> ${ZDOTDIR:-~}/.config/alias4sh/aliasrc
     if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
-        echo 'alias zshrl="source ~/.zshrc"' >> ${ZDOTDIR:-~}/.config/alias4sh/aliasrc
+        echo 'alias zshrl="source ~/.zprofile ~/.zshrc"' >> ${ZDOTDIR:-~}/.config/alias4sh/aliasrc
         echo 'alias his="history"' >> ${ZDOTDIR:-~}/.config/alias4sh/aliasrc
         echo 'alias hisp="history -p"' >> ${ZDOTDIR:-~}/.config/alias4sh/aliasrc
         echo 'alias hisc="echo -n > ~/.zsh_history && history -p  && exec $SHELL -l"' >> ${ZDOTDIR:-~}/.config/alias4sh/aliasrc
         echo 'alias hiscl="rm -f ~/.bash_history && rm -f ~/.node_repl_history && rm -f ~/.python_history"' >> ${ZDOTDIR:-~}/.config/alias4sh/aliasrc
     elif [ -n "`$SHELL -c 'echo $BASH_VERSION'`" ]; then
-        echo 'alias zshrl="source ~/.bashrc"' >> ${ZDOTDIR:-~}/.config/alias4sh/aliasrc
+        echo 'alias bashrl="source ~/.bash_profile ~/.bashrc"' >> ${ZDOTDIR:-~}/.config/alias4sh/aliasrc
         echo 'alias his="history"' >> ${ZDOTDIR:-~}/.config/alias4sh/aliasrc
         echo 'alias hisc="history -c"' >> ${ZDOTDIR:-~}/.config/alias4sh/aliasrc
     fi
