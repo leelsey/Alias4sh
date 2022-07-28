@@ -74,12 +74,12 @@ shrc() {
         echo ' - Add on .zprofile file...'
         echo '\n# Alias4sh' >> $HOME/.zprofile
         echo 'source ~/.config/alias4sh/aliasrc \n' >> $HOME/.zprofile
-        echo '\nDone! Try "source ~/.zprofile" or  to load the aliases. \n'
+        echo '\nDone! \n • Try "source ~/.zprofile" or restart Terminal to load the aliases. \n'
     elif [ -n "`$SHELL -c 'echo $BASH_VERSION'`" ]; then
         echo ' - Add on .bash_profile file...'
         echo '\n# Alias4sh' >> $HOME/.bash_profile
         echo 'source ~/.config/alias4sh/aliasrc \n' >> $HOME/.bash_profile
-        echo '\nDone! Try "source ~/.bash_profile" or  to load the aliases. \n'
+        echo '\nDone! \n • Try "source ~/.bash_profile" or Terminal to load the aliases. \n'
     fi
 }
 logo
@@ -90,7 +90,8 @@ if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ] || [ -n "`$SHELL -c 'echo $BASH_VERS
             echo ' - Reinstalled Alias4sh!'
             rm -f $HOME/.config/alias4sh/aliasrc
             main
-            echo '\nDone! Restart your shell or to load the aliases to your shell‘s profile. \nIf not work, check "source ~/.config/alias4sh/aliasrc" code in your shell resoure file (.zprofile or .bash_profile). \n'
+            echo '\nDone! \n • Restart your shell or restart Terminal to load the aliases to your shell‘s profile.'
+            echo ' • If not work, check "source ~/.config/alias4sh/aliasrc" code in your shell resoure file (.zprofile or .bash_profile). \n'
         else
             echo ' - Install Alias4sh, wait a moment...'
             main
