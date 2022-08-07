@@ -49,14 +49,19 @@ source ~/.bashrc
 |dird|dir -al --group-directories-first|
 |vdir|vdir --color=auto|
 |cls|clear|
-|dfh|df -h|
-|duh|du -h|
 |cdh|cd ~|
 |p|cd ..|
+|rm|rm -i|
+|cp|cp -i|
+|mv|mv -i|
 |f|finger|
 |j|jobs -l|
 |d|date|
 |c|cal|
+|dfh|df -h|
+|duh|du -h|
+|nvi|nvim|
+
 ### For macOS
 |Aliased cmd|Original cmd|
 |---|---|
@@ -80,9 +85,6 @@ source ~/.bashrc
 ### Disabled
 |Aliased cmd|Original cmd|
 |---|---|
-|curl|curl -w '\n'|
-|rm|rm -i|
-|cp|cp -i|
-|mv|mv -i|
 |mkdir|mkdir -p|
 |rmdir|rmdir -p|
+|curl|curl -w '\n'|

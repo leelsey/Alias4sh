@@ -8,6 +8,7 @@ begin() {
 }
 main() {
     begin
+    echo '\n# ENABLED ALIAS' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias shrl="exec $SHELL"' >> $HOME/.config/alias4sh/aliasrc
     if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
         echo 'if [ -f ${ZDOTDIR:-~}/.zprofile ]; then' >> $HOME/.config/alias4sh/aliasrc
@@ -49,27 +50,30 @@ main() {
     echo 'alias dird="dir -al --group-directories-first"' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias vdir="vdir --color=auto"' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias cls="clear"' >> $HOME/.config/alias4sh/aliasrc
+    echo 'alias cdh="cd ~"' >> $HOME/.config/alias4sh/aliasrc
+    echo 'alias p="cd .."' >> $HOME/.config/alias4sh/aliasrc
+    echo 'alias mv="mv -iv"' >> $HOME/.config/alias4sh/aliasrc
+    echo 'alias cp="cp -iv"' >> $HOME/.config/alias4sh/aliasrc
+    echo 'alias rm="rm -iv"' >> $HOME/.config/alias4sh/aliasrc
     if [ "$(uname)" == "Darwin" ]; then
         echo 'alias ip="ipconfig"' >> $HOME/.config/alias4sh/aliasrc
     elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
         echo 'alias ip addr="ip addr --color"' >> $HOME/.config/alias4sh/aliasrc
     fi
-    echo 'alias dfh="df -h"' >> $HOME/.config/alias4sh/aliasrc
-    echo 'alias duh="du -h"' >> $HOME/.config/alias4sh/aliasrc
-    echo 'alias nvi="nvim"' >> $HOME/.config/alias4sh/aliasrc
-    echo 'alias cdh="cd ~"' >> $HOME/.config/alias4sh/aliasrc
-    echo 'alias p="cd .."' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias f="finger"' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias j="jobs -l"' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias d="date"' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias c="cal"' >> $HOME/.config/alias4sh/aliasrc
-    echo 'alias mv="mv -iv"' >> $HOME/.config/alias4sh/aliasrc
-    echo 'alias cp="cp -iv"' >> $HOME/.config/alias4sh/aliasrc
-    echo 'alias rm="rm -iv"' >> $HOME/.config/alias4sh/aliasrc
+    echo 'alias dfh="df -h"' >> $HOME/.config/alias4sh/aliasrc
+    echo 'alias duh="du -h"' >> $HOME/.config/alias4sh/aliasrc
+    echo 'alias nvi="nvim"' >> $HOME/.config/alias4sh/aliasrc
+    echo '# DISABLED ALIAS' >> $HOME/.config/alias4sh/aliasrc
     echo '#alias mkdir="mkdir -p"' >> $HOME/.config/alias4sh/aliasrc
     echo '#alias rmdir="rmdir -p"' >> $HOME/.config/alias4sh/aliasrc
     echo '#alias curl="curl -w '\'\\'\n'\''"' >> $HOME/.config/alias4sh/aliasrc
 }
+
+
 shrc() {
     if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
         echo ' - Add on .zprofile file...'
