@@ -56,18 +56,19 @@ main() {
     fi
     echo 'alias dfh="df -h"' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias duh="du -h"' >> $HOME/.config/alias4sh/aliasrc
+    echo 'alias nvi="nvim"' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias cdh="cd ~"' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias p="cd .."' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias f="finger"' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias j="jobs -l"' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias d="date"' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias c="cal"' >> $HOME/.config/alias4sh/aliasrc
-    echo '#alias curl="curl -w '\'\\'\n'\''"' >> $HOME/.config/alias4sh/aliasrc
-    echo '#alias rm="rm -i"' >> $HOME/.config/alias4sh/aliasrc
-    echo '#alias cp="cp -i"' >> $HOME/.config/alias4sh/aliasrc
-    echo '#alias mv="mv -i"' >> $HOME/.config/alias4sh/aliasrc
+    echo 'alias mv="mv -iv"' >> $HOME/.config/alias4sh/aliasrc
+    echo 'alias cp="cp -iv"' >> $HOME/.config/alias4sh/aliasrc
+    echo 'alias rm="rm -iv"' >> $HOME/.config/alias4sh/aliasrc
     echo '#alias mkdir="mkdir -p"' >> $HOME/.config/alias4sh/aliasrc
-    echo '#alias rmdir="rmdir -p"' >> $HOME/.config/alias4sh/aliasrc    
+    echo '#alias rmdir="rmdir -p"' >> $HOME/.config/alias4sh/aliasrc
+    echo '#alias curl="curl -w '\'\\'\n'\''"' >> $HOME/.config/alias4sh/aliasrc
 }
 shrc() {
     if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
