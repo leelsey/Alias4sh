@@ -93,15 +93,23 @@ main() {
     echo '  alias shdnh="sudo shutdown -h now"' >> $HOME/.config/alias4sh/aliasrc
     echo '  alias shdnr="sudo shutdown -r now"' >> $HOME/.config/alias4sh/aliasrc
     echo '  alias svi="sudo vi"' >> $HOME/.config/alias4sh/aliasrc
-    echo '  alias dnf="sudo dnf"' >> $HOME/.config/alias4sh/aliasrc
-    echo '  alias yum="sudo yum"          # legacy' >> $HOME/.config/alias4sh/aliasrc
-    echo '  alias apt="sudo apt"' >> $HOME/.config/alias4sh/aliasrc
-    echo '  alias apt-get="sudo apt-get"  # legacy' >> $HOME/.config/alias4sh/aliasrc
     echo 'fi' >> $HOME/.config/alias4sh/aliasrc
-    echo '\n# DISABLED ALIAS' >> $HOME/.config/alias4sh/aliasrc
-    echo '#alias curl="curl -w '\'\\'\n'\''"' >> $HOME/.config/alias4sh/aliasrc
-    echo '#alias vi="vim"' >> $HOME/.config/alias4sh/aliasrc
-    echo '#alias top="htop"' >> $HOME/.config/alias4sh/aliasrc
+    echo '\n\n# DISABLED ALIAS' >> $HOME/.config/alias4sh/aliasrc
+    echo '#alias curl="curl -w '\'\\'\n'\''"  # ignore output % (=warning) when use zsh' >> $HOME/.config/alias4sh/aliasrc
+    echo '#alias vi="vim"    # replace vi -> vim' >> $HOME/.config/alias4sh/aliasrc
+    echo '#alias top="htop"  # replace top -> htop' >> $HOME/.config/alias4sh/aliasrc
+    if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+        echo '#alias dnf="sudo dnf"          # for redhat-based family' >> $HOME/.config/alias4sh/aliasrc
+        echo '#alias yum="sudo yum"          # redhat-based family‘s legacy' >> $HOME/.config/alias4sh/aliasrc
+        echo '#alias apt="sudo apt"          # for debian-based family' >> $HOME/.config/alias4sh/aliasrc
+        echo '#alias apt-get="sudo apt-get"  # debian-based family‘s legacy' >> $HOME/.config/alias4sh/aliasrc
+        echo '#alias pacman="sudo pacman"    # for arch-based family' >> $HOME/.config/alias4sh/aliasrc
+        echo '#alias zypper="sudo zypper"    # for suse-based family' >> $HOME/.config/alias4sh/aliasrc
+        echo '#alias nft="sudo nft"                # firewall management tool: nftables (netfilter table)' >> $HOME/.config/alias4sh/aliasrc
+        echo '#alias ufw="sudo ufw"                # firewall management tool: ufw (uncomplicated firewall)' >> $HOME/.config/alias4sh/aliasrc
+        echo '#alias firewall="sudo firewall-cmd"  # firewall management tool: firewall' >> $HOME/.config/alias4sh/aliasrc
+        echo '#alias iptables="sudo iptables"      # legacy nefirewall management tool' >> $HOME/.config/alias4sh/aliasrc
+    fi
 }
 shrc() {
     if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
