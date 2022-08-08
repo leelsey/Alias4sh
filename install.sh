@@ -9,7 +9,7 @@ begin() {
 main() {
     begin
     echo '\n# ENABLED ALIAS' >> $HOME/.config/alias4sh/aliasrc
-    echo 'alias shrl="exec $SHELL"' >> $HOME/.config/alias4sh/aliasrc
+    echo 'alias shrl="exec -l $SHELL"' >> $HOME/.config/alias4sh/aliasrc
     if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
         echo 'if [ -f ${ZDOTDIR:-~}/.zprofile ]; then' >> $HOME/.config/alias4sh/aliasrc
         echo '    alias zshrl="source ~/.zprofile"' >> $HOME/.config/alias4sh/aliasrc
@@ -36,7 +36,6 @@ main() {
     echo 'alias grep="grep --color=auto"' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias egrep="egrep --color=auto"' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias fgrep="fgrep --color=auto"' >> $HOME/.config/alias4sh/aliasrc
-    echo 'alias diff="diff --color=auto"' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias ls="ls --color=auto"' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias l="ls -CF"' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias ll="ls -l"' >> $HOME/.config/alias4sh/aliasrc
@@ -49,31 +48,49 @@ main() {
     echo 'alias dir="dir --color=auto"' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias dird="dir -al --group-directories-first"' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias vdir="vdir --color=auto"' >> $HOME/.config/alias4sh/aliasrc
+    echo 'alias cl="clear"' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias cls="clear"' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias cdh="cd ~"' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias p="cd .."' >> $HOME/.config/alias4sh/aliasrc
+    echo 'alias chown="chown --preserve-root"' >> $HOME/.config/alias4sh/aliasrc
+    echo 'alias chown="chown --preserve-root"' >> $HOME/.config/alias4sh/aliasrc
+    echo 'alias chgrp="chgrp --preserve-root"' >> $HOME/.config/alias4sh/aliasrc
+    echo 'alias rm="rm -Iv --preserve-root"' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias mv="mv -iv"' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias cp="cp -iv"' >> $HOME/.config/alias4sh/aliasrc
-    echo 'alias rm="rm -iv"' >> $HOME/.config/alias4sh/aliasrc
-    if [ "$(uname)" == "Darwin" ]; then
-        echo 'alias ip="ipconfig"' >> $HOME/.config/alias4sh/aliasrc
-    elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-        echo 'alias ip addr="ip addr --color"' >> $HOME/.config/alias4sh/aliasrc
-    fi
+    echo 'alias ln="ln -iv"' >> $HOME/.config/alias4sh/aliasrc
+    echo 'alias rmdir="rmdir -v"' >> $HOME/.config/alias4sh/aliasrc
+    echo 'alias mkdir="mkdir -v"' >> $HOME/.config/alias4sh/aliasrc
+    echo 'alias wget="wget -c"' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias f="finger"' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias j="jobs -l"' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias d="date"' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias c="cal"' >> $HOME/.config/alias4sh/aliasrc
+    echo 'alias whichos="echo $(uname)' >> $HOME/.config/alias4sh/aliasrc
+    echo 'alias ping="ping -a"' >> $HOME/.config/alias4sh/aliasrc
+    if [ "$(uname)" == "Darwin" ]; then
+        echo 'alias pinga="ping --apple-connect --apple-time"' >> $HOME/.config/alias4sh/aliasrc
+        echo 'alias pingt="ping -c 5"' >> $HOME/.config/alias4sh/aliasrc
+        echo 'alias ip="ipconfig"' >> $HOME/.config/alias4sh/aliasrc
+    elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+        echo 'alias pingt="ping -c 4"' >> $HOME/.config/alias4sh/aliasrc
+        echo 'alias ip addr="ip addr --color"' >> $HOME/.config/alias4sh/aliasrc
+    fi
+    echo 'alias bc="bc -l"' >> $HOME/.config/alias4sh/aliasrc
+    echo 'alias ls="ls --color=auto"' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias dfh="df -h"' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias duh="du -h"' >> $HOME/.config/alias4sh/aliasrc
+    echo 'alias vin="vi \"+set nu\""' >> $HOME/.config/alias4sh/aliasrc
     echo 'alias nvi="nvim"' >> $HOME/.config/alias4sh/aliasrc
+    echo 'function dif() { diff "$1" "$2" | bat -l diff; }' >> $HOME/.config/alias4sh/aliasrc
+    echo 'function dfr() { diff -u "$1" "$2" | diffr --line-numbers; }' >> $HOME/.config/alias4sh/aliasrc
+    echo 'function gsdif() {\n  while [[ $# -gt 0 ]]\n  do\n    git show "${1}" | bat -l diff;\n    shift\n  done\n}' >> $HOME/.config/alias4sh/aliasrc
+    echo 'function gsdfr() {\n  while [[ $# -gt 0 ]]\n  do\n    git show "${1}" | diffr --line-numbers;\n    shift\n  done\n}' >> $HOME/.config/alias4sh/aliasrc
     echo '# DISABLED ALIAS' >> $HOME/.config/alias4sh/aliasrc
-    echo '#alias mkdir="mkdir -p"' >> $HOME/.config/alias4sh/aliasrc
-    echo '#alias rmdir="rmdir -p"' >> $HOME/.config/alias4sh/aliasrc
     echo '#alias curl="curl -w '\'\\'\n'\''"' >> $HOME/.config/alias4sh/aliasrc
+    echo '#alias vi="vim"' >> $HOME/.config/alias4sh/aliasrc
+    echo '#alias top="htop"' >> $HOME/.config/alias4sh/aliasrc
 }
-
-
 shrc() {
     if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
         echo ' - Add on .zprofile file...'
