@@ -86,7 +86,19 @@ main() {
     echo 'function dfr() { diff -u "$1" "$2" | diffr --line-numbers; }' >> $HOME/.config/alias4sh/aliasrc
     echo 'function gsdif() {\n  while [[ $# -gt 0 ]]\n  do\n    git show "${1}" | bat -l diff;\n    shift\n  done\n}' >> $HOME/.config/alias4sh/aliasrc
     echo 'function gsdfr() {\n  while [[ $# -gt 0 ]]\n  do\n    git show "${1}" | diffr --line-numbers;\n    shift\n  done\n}' >> $HOME/.config/alias4sh/aliasrc
-    echo '# DISABLED ALIAS' >> $HOME/.config/alias4sh/aliasrc
+    echo 'if [ $UID -ne 0 ]; then' >> $HOME/.config/alias4sh/aliasrc
+    echo '  alias admin="sudo -i"' >> $HOME/.config/alias4sh/aliasrc
+    echo '  alias reboot="sudo reboot"' >> $HOME/.config/alias4sh/aliasrc
+    echo '  alias shutdown="sudo shutdown"' >> $HOME/.config/alias4sh/aliasrc
+    echo '  alias shdnh="sudo shutdown -h now"' >> $HOME/.config/alias4sh/aliasrc
+    echo '  alias shdnr="sudo shutdown -r now"' >> $HOME/.config/alias4sh/aliasrc
+    echo '  alias svi="sudo vi"' >> $HOME/.config/alias4sh/aliasrc
+    echo '  alias dnf="sudo dnf"' >> $HOME/.config/alias4sh/aliasrc
+    echo '  alias yum="sudo yum"          # legacy' >> $HOME/.config/alias4sh/aliasrc
+    echo '  alias apt="sudo apt"' >> $HOME/.config/alias4sh/aliasrc
+    echo '  alias apt-get="sudo apt-get"  # legacy' >> $HOME/.config/alias4sh/aliasrc
+    echo 'fi' >> $HOME/.config/alias4sh/aliasrc
+    echo '\n# DISABLED ALIAS' >> $HOME/.config/alias4sh/aliasrc
     echo '#alias curl="curl -w '\'\\'\n'\''"' >> $HOME/.config/alias4sh/aliasrc
     echo '#alias vi="vim"' >> $HOME/.config/alias4sh/aliasrc
     echo '#alias top="htop"' >> $HOME/.config/alias4sh/aliasrc
