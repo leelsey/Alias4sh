@@ -15,24 +15,35 @@ main() {
 
     echo "\n# EXTENDED COMMAND" >> $aliasrcPath
     echo "\n# Enviroment" >> $aliasrcPath
-    echo "shrl () { command exec -l \$SHELL ; }" >> $aliasrcPath
-    if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
-        echo "if [ -f $HOME/.zprofile ] || [ -f $HOME/.zprofile ]; then" >> $aliasrcPath
-        echo "    zshrl () { command source ~/.zprofile && source ~/.zshrc ; }" >> $aliasrcPath
-        echo "elif [ -f $HOME/.zshrc ]; then" >> $aliasrcPath
-        echo "    zshrl () { command source ~/.zshrc ; }" >> $aliasrcPath
-        echo "elif [ -f $HOME/.zprofile ]; then" >> $aliasrcPath
-        echo "    zshrl () { command source ~/.zprofile ; }" >> $aliasrcPath
-        echo "fi" >> $aliasrcPath
-    elif [ -n "`$SHELL -c 'echo $BASH_VERSION'`" ]; then
-        echo "if [ -f $HOME/.zprofile ] || [ -f $HOME/.zprofile ]; then" >> $aliasrcPath
-        echo "    bashrl () { command source ~/.bash_profile && source ~/.bashrc ; }" >> $aliasrcPath
-        echo "elif [ -f $HOME/.zshrc ]; then" >> $aliasrcPath
-        echo "    bashrl () { command source ~/.bashrc ; }" >> $aliasrcPath
-        echo "elif [ -f $HOME/.zprofile ]; then" >> $aliasrcPath
-        echo "    bashrl () { command source ~/.bash_profile ; }" >> $aliasrcPath
-        echo "fi" >> $aliasrcPath
-    fi
+    echo "shrl () { echo \"reloaded shell\" && exec -l $SHELL ; }" >> $aliasrcPath
+    echo "zshrl () {" >> $aliasrcPath
+    echo "  if [ -f $HOME/.zprofile ] || [ -f $HOME/.zprofile ]; then" >> $aliasrcPath
+    echo "    source $HOME/.zprofile && source $HOME/.zshrc ;" >> $aliasrcPath
+    echo "    echo "reloaded zprofile and zshrc" ;" >> $aliasrcPath
+    echo "  elif [ -f $HOME/.zshrc ]; then" >> $aliasrcPath
+    echo "    command source $HOME/.zshrc ;" >> $aliasrcPath
+    echo "    echo "reloaded zshrc" ;" >> $aliasrcPath
+    echo "  elif [ -f $HOME/.zprofile ]; then" >> $aliasrcPath
+    echo "    command source $HOME/.zprofile ;" >> $aliasrcPath
+    echo "    echo "reloaded zprofile" ;" >> $aliasrcPath
+    echo "  else" >> $aliasrcPath
+    echo "    echo "shrl: No enviromnet file found"" >> $aliasrcPath
+    echo "  fi" >> $aliasrcPath
+    echo "}" >> $aliasrcPath
+    echo "bashrl () {" >> $aliasrcPath
+    echo "  if [ -f $HOME/.bash_profile ] || [ -f $HOME/.bashrc ]; then" >> $aliasrcPath
+    echo "    source $HOME/.bash_profile && source $HOME/.bashrc ;" >> $aliasrcPath
+    echo "    echo "reloaded bash_profile and bashrc" ;" >> $aliasrcPath
+    echo "  elif [ -f $HOME/.bashrc ]; then" >> $aliasrcPath
+    echo "    command source $HOME/.bashrc ;" >> $aliasrcPath
+    echo "    echo "reloaded bashrc" ;" >> $aliasrcPath
+    echo "  elif [ -f $HOME/.bash_profile ]; then" >> $aliasrcPath
+    echo "    command source $HOME/.bash_profile ;" >> $aliasrcPath
+    echo "    echo "reloaded bash_profile" ;" >> $aliasrcPath
+    echo "  else" >> $aliasrcPath
+    echo "    echo "shrl: no enviromnet file found"" >> $aliasrcPath
+    echo "  fi" >> $aliasrcPath
+    echo "}" >> $aliasrcPath
     echo "if [ $UID -ne 0 ]; then" >> $aliasrcPath
     echo "  admin () { command sudo -i ; } " >> $aliasrcPath
     echo "fi" >> $aliasrcPath
@@ -107,7 +118,7 @@ main() {
     echo "shdnh () { sudo shutdown -h now ; } " >> $aliasrcPath
     echo "shdnr () { sudo shutdown -r now ; } " >> $aliasrcPath
     # echo "vi () { command vim \"\$@\" ; }" >> $aliasrcPath
-    echo "vin () { vim \"+set nu\" ; }" >> $aliasrcPath
+    echo "vin () { vim \"+set nu\" \"\$@\" ; }" >> $aliasrcPath
     echo "svi () { sudo vim \"\$@\" ; }" >> $aliasrcPath
     echo "svim () { sudo vim \"\$@\" ; }" >> $aliasrcPath
     echo "nvi () { nvim \"\$@\" ; }" >> $aliasrcPath
