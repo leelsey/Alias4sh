@@ -1,4 +1,4 @@
-aliasrcPath=$HOME"/.config/alias4sh/aliasrc"
+aliasPath=$HOME"/.config/alias4sh/alias4.sh"
 
 logo() {
     echo "#             _ _           _  _       _ \n#       /\\   | (_)         | || |     | | \n#      /  \\  | |_  __ _ ___| || |_ ___| |__ \n#     / /\\ \\ | | |/ _\` / __|__   _/ __| '_ \\ \n#    / ____ \\| | | (_| \\__ \\  | | \\__ \\ | | | \n#   /_/    \\_\\_|_|\\__,_|___/  |_| |___/_| |_| \n#\n"
@@ -6,179 +6,186 @@ logo() {
 
 begin() {
     mkdir -p $HOME/.config/alias4sh
-    touch $aliasrcPath && chmod 600 $aliasrcPath
-    logo >> $aliasrcPath
+    touch $aliasPath && chmod 600 $aliasPath
+    logo >> $aliasPath
 }
 
 main() {
     begin
 
-    echo "\n# EXTENDED COMMAND" >> $aliasrcPath
-    echo "\n# Enviroment" >> $aliasrcPath
-    echo "if [ $UID -ne 0 ]; then" >> $aliasrcPath
-    echo "  admin () { command sudo -i ; } " >> $aliasrcPath
-    echo "fi" >> $aliasrcPath
-    echo "shrl () { echo \"reloaded shell\" && exec -l $SHELL ; }" >> $aliasrcPath
+    # Funtional command part
+    echo "\n# EXTENDED COMMAND" >> $aliasPath
+
+    # About Shell and evironment
+    echo "\n# Enviroment" >> $aliasPath
+    echo "if [ $UID -ne 0 ]; then" >> $aliasPath
+    echo "  admin () { command sudo -i ; } " >> $aliasPath
+    echo "fi" >> $aliasPath
+    echo "shrl () { echo \"reloaded shell\" && exec -l $SHELL ; }" >> $aliasPath
     if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
-        echo "zshrl () {" >> $aliasrcPath
-        echo "  if [ -f $HOME/.zprofile ] || [ -f $HOME/.zprofile ]; then" >> $aliasrcPath
-        echo "    source $HOME/.zprofile && source $HOME/.zshrc ;" >> $aliasrcPath
-        echo "    echo "reloaded zprofile and zshrc" ;" >> $aliasrcPath
-        echo "  elif [ -f $HOME/.zshrc ]; then" >> $aliasrcPath
-        echo "    command source $HOME/.zshrc ;" >> $aliasrcPath
-        echo "    echo "reloaded zshrc" ;" >> $aliasrcPath
-        echo "  elif [ -f $HOME/.zprofile ]; then" >> $aliasrcPath
-        echo "    command source $HOME/.zprofile ;" >> $aliasrcPath
-        echo "    echo "reloaded zprofile" ;" >> $aliasrcPath
-        echo "  else" >> $aliasrcPath
-        echo "    echo "shrl: No environment file found"" >> $aliasrcPath
-        echo "  fi" >> $aliasrcPath
-        echo "}" >> $aliasrcPath
-        echo "zshenv () { vi $HOME/.zshenv ; }" >> $aliasrcPath
-        echo "zprofile () { vi $HOME/.zprofile ; }" >> $aliasrcPath
-        echo "zshrc () { vi $HOME/.zshrc ; }" >> $aliasrcPath
-        echo "zlogin () { vi $HOME/.zlogin ; }" >> $aliasrcPath
-        echo "zlogout () { vi $HOME/.zlogout ; }" >> $aliasrcPath
+        echo "zshrl () {" >> $aliasPath
+        echo "  if [ -f $HOME/.zprofile ] || [ -f $HOME/.zprofile ]; then" >> $aliasPath
+        echo "    source $HOME/.zprofile && source $HOME/.zshrc ;" >> $aliasPath
+        echo "    echo "reloaded zprofile and zshrc" ;" >> $aliasPath
+        echo "  elif [ -f $HOME/.zshrc ]; then" >> $aliasPath
+        echo "    command source $HOME/.zshrc ;" >> $aliasPath
+        echo "    echo "reloaded zshrc" ;" >> $aliasPath
+        echo "  elif [ -f $HOME/.zprofile ]; then" >> $aliasPath
+        echo "    command source $HOME/.zprofile ;" >> $aliasPath
+        echo "    echo "reloaded zprofile" ;" >> $aliasPath
+        echo "  else" >> $aliasPath
+        echo "    echo "shrl: No environment file found"" >> $aliasPath
+        echo "  fi" >> $aliasPath
+        echo "}" >> $aliasPath
+        echo "zshenv () { vi $HOME/.zshenv ; }" >> $aliasPath
+        echo "zprofile () { vi $HOME/.zprofile ; }" >> $aliasPath
+        echo "zshrc () { vi $HOME/.zshrc ; }" >> $aliasPath
+        echo "zlogin () { vi $HOME/.zlogin ; }" >> $aliasPath
+        echo "zlogout () { vi $HOME/.zlogout ; }" >> $aliasPath
     elif [ -n "`$SHELL -c 'echo $BASH_VERSION'`" ]; then
-        echo "bashrl () {" >> $aliasrcPath
-        echo "  if [ -f $HOME/.bash_profile ] || [ -f $HOME/.bashrc ]; then" >> $aliasrcPath
-        echo "    source $HOME/.bash_profile && source $HOME/.bashrc ;" >> $aliasrcPath
-        echo "    echo "reloaded bash_profile and bashrc" ;" >> $aliasrcPath
-        echo "  elif [ -f $HOME/.bashrc ]; then" >> $aliasrcPath
-        echo "    command source $HOME/.bashrc ;" >> $aliasrcPath
-        echo "    echo "reloaded bashrc" ;" >> $aliasrcPath
-        echo "  elif [ -f $HOME/.bash_profile ]; then" >> $aliasrcPath
-        echo "    command source $HOME/.bash_profile ;" >> $aliasrcPath
-        echo "    echo "reloaded bash_profile" ;" >> $aliasrcPath
-        echo "  else" >> $aliasrcPath
-        echo "    echo "shrl: no environment file found"" >> $aliasrcPath
-        echo "  fi" >> $aliasrcPath
-        echo "}" >> $aliasrcPath
+        echo "bashrl () {" >> $aliasPath
+        echo "  if [ -f $HOME/.bash_profile ] || [ -f $HOME/.bashrc ]; then" >> $aliasPath
+        echo "    source $HOME/.bash_profile && source $HOME/.bashrc ;" >> $aliasPath
+        echo "    echo "reloaded bash_profile and bashrc" ;" >> $aliasPath
+        echo "  elif [ -f $HOME/.bashrc ]; then" >> $aliasPath
+        echo "    command source $HOME/.bashrc ;" >> $aliasPath
+        echo "    echo "reloaded bashrc" ;" >> $aliasPath
+        echo "  elif [ -f $HOME/.bash_profile ]; then" >> $aliasPath
+        echo "    command source $HOME/.bash_profile ;" >> $aliasPath
+        echo "    echo "reloaded bash_profile" ;" >> $aliasPath
+        echo "  else" >> $aliasPath
+        echo "    echo "shrl: no environment file found"" >> $aliasPath
+        echo "  fi" >> $aliasPath
+        echo "}" >> $aliasPath
     fi
 
-    echo "\n# Default Option" >> $aliasrcPath
-    echo "chmod () { command chmod -v --preserve-root \"\$@\" ; }" >> $aliasrcPath
-    echo "chown () { command chown -v --preserve-root \"\$@\" ; }" >> $aliasrcPath
-    echo "chgrp () { command chgrp -v --preserve-root \"\$@\" ; }" >> $aliasrcPath
-    echo "rm () { command rm -Iv --preserve-root \"\$@\" ; } " >> $aliasrcPath
-    echo "mv () { command mv -iv \"\$@\" ; } " >> $aliasrcPath 
-    echo "cp () { command cp -iv \"\$@\" ; } " >> $aliasrcPath 
-    echo "ln () { command ln -iv \"\$@\" ; } " >> $aliasrcPath 
-    echo "rmdir () { command rmdir -v \"\$@\" ; } " >> $aliasrcPath
-    echo "mkdir () { command mkdir -v \"\$@\" ; } " >> $aliasrcPath
-    echo "pings () { ping -a \"\$@\" ; }" >> $aliasrcPath
-    echo "pingt () { ping -a -c 5 \"\$@\" ; }" >> $aliasrcPath
+    # About default commands options
+    echo "\n# Default Option" >> $aliasPath
+    echo "chmod () { command chmod -v --preserve-root \"\$@\" ; }" >> $aliasPath
+    echo "chown () { command chown -v --preserve-root \"\$@\" ; }" >> $aliasPath
+    echo "chgrp () { command chgrp -v --preserve-root \"\$@\" ; }" >> $aliasPath
+    echo "rm () { command rm -Iv --preserve-root \"\$@\" ; } " >> $aliasPath
+    echo "mv () { command mv -iv \"\$@\" ; } " >> $aliasPath 
+    echo "cp () { command cp -iv \"\$@\" ; } " >> $aliasPath 
+    echo "ln () { command ln -iv \"\$@\" ; } " >> $aliasPath 
+    echo "rmdir () { command rmdir -v \"\$@\" ; } " >> $aliasPath
+    echo "mkdir () { command mkdir -v \"\$@\" ; } " >> $aliasPath
+    echo "pings () { ping -a \"\$@\" ; }" >> $aliasPath
+    echo "pingt () { ping -a -c 5 \"\$@\" ; }" >> $aliasPath
     if [ "$(uname)" == "Darwin" ]; then
-        echo "pinga () { ping -a --apple-connect --apple-time \"\$@\" ; }" >> $aliasrcPath
-        echo "ip () { command ipconfig \$@ ; }" >> $aliasrcPath
-        
+        echo "pinga () { ping -a --apple-connect --apple-time \"\$@\" ; }" >> $aliasPath
+        echo "ip () { command ipconfig \$@ ; }" >> $aliasPath
     fi
+    # echo "vi () { command vim \"\$@\" ; }" >> $aliasPath
 
-    echo "\n# Colourising" >> $aliasrcPath
-    echo "ls () { command ls --color=auto \$@ ; }" >> $aliasrcPath
-    echo "dir () { command dir --color=auto \$@ ; }" >> $aliasrcPath
-    echo "vdir () { command vdir --color=auto \$@ ; }" >> $aliasrcPath
-    echo "grep () { command grep --color=auto \$@ ; }" >> $aliasrcPath
-    echo "egrep () { command egrep --color=auto \$@ ; }" >> $aliasrcPath
-    echo "fgrep () { command fgrep --color=auto \$@ ; }" >> $aliasrcPath
-    echo "xzegrep () { command xzegrep --color=auto \$@ ; }" >> $aliasrcPath
-    echo "xzfgrep () { command xzfgrep --color=auto \$@ ; }" >> $aliasrcPath
-    echo "xzgrep () { command xzgrep --color=auto \$@ ; }" >> $aliasrcPath
-    echo "zegrep () { command zegrep --color=auto \$@ ; }" >> $aliasrcPath
-    echo "zfgrep () { command zfgrep --color=auto \$@ ; }" >> $aliasrcPath
-    echo "zgrep () { command zgrep --color=auto \$@ ; }" >> $aliasrcPath
-    echo "tree () { command tree -C \$@ ; }" >> $aliasrcPath
+    # About colourising for output
+    echo "\n# Colourising" >> $aliasPath
+    echo "ls () { command ls --color=auto \$@ ; }" >> $aliasPath
+    echo "dir () { command dir --color=auto \$@ ; }" >> $aliasPath
+    echo "vdir () { command vdir --color=auto \$@ ; }" >> $aliasPath
+    echo "grep () { command grep --color=auto \$@ ; }" >> $aliasPath
+    echo "egrep () { command egrep --color=auto \$@ ; }" >> $aliasPath
+    echo "fgrep () { command fgrep --color=auto \$@ ; }" >> $aliasPath
+    echo "xzegrep () { command xzegrep --color=auto \$@ ; }" >> $aliasPath
+    echo "xzfgrep () { command xzfgrep --color=auto \$@ ; }" >> $aliasPath
+    echo "xzgrep () { command xzgrep --color=auto \$@ ; }" >> $aliasPath
+    echo "zegrep () { command zegrep --color=auto \$@ ; }" >> $aliasPath
+    echo "zfgrep () { command zfgrep --color=auto \$@ ; }" >> $aliasPath
+    echo "zgrep () { command zgrep --color=auto \$@ ; }" >> $aliasPath
+    echo "tree () { command tree -C \$@ ; }" >> $aliasPath
     if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-        echo "alias ip addr='ip addr --color'" >> $aliasrcPath
+        echo "alias ip addr='ip addr --color'" >> $aliasPath
     fi
 
-    echo "\n# Advanced Command" >> $aliasrcPath
-    echo "whichos () { command echo $(uname) ; }" >> $aliasrcPath
-    echo "l () { ls -CF \"\$@\" ; }" >> $aliasrcPath
-    echo "l. () { ls -CFd .* \"\$@\" ; }" >> $aliasrcPath
-    echo "ll () { ls -l \"\$@\" ; }" >> $aliasrcPath
-    echo "ll. () { ls -ld .* \"\$@\" ; }" >> $aliasrcPath
-    echo "la () { ls -A \"\$@\" ; }" >> $aliasrcPath
-    echo "lal () { ls -Al \"\$@\" ; }" >> $aliasrcPath 
-    echo "lla () { ls -al \"\$@\" ; }" >> $aliasrcPath
-    echo "lst () { ls -alhF \"\$@\" ; }" >> $aliasrcPath 
-    echo "lsd () { ls -A --group-directories-first \"\$@\" ; }" >> $aliasrcPath
-    echo "lad () { ls -Al --group-directories-first \"\$@\" ; }" >> $aliasrcPath
-    echo "lld () { ls -al --group-directories-first \"\$@\" ; }" >> $aliasrcPath
-    echo "lsz () { ls -alh \$@ | grep -v \"^[d|b|c|l|p|s|-]\" \"\$@\" ; }" >> $aliasrcPath
-    echo "ltr () { ls -lR \"\$@\" ; }" >> $aliasrcPath
-    echo "dird () { dir -al --group-directories-first \"\$@\" ; }" >> $aliasrcPath
-    echo "dfh () { df -h \"\$@\" ; }" >> $aliasrcPath
-    echo "duh () { du -h \"\$@\" ; }" >> $aliasrcPath
-    echo "find. () { find . \"\$@\" ; }" >> $aliasrcPath
-    echo "findh () { find ~ \"\$@\" ; }" >> $aliasrcPath
-    echo "findr () { find / \"\$@\" ; }" >> $aliasrcPath
-    echo "cls () { clear ; }" >> $aliasrcPath
-    echo "his () { history \"\$@\" ; }" >> $aliasrcPath
+    # About useful new command
+    echo "\n# Advanced Command" >> $aliasPath
+    echo "whichos () { command echo $(uname) ; }" >> $aliasPath
+    echo "l () { ls -CF \"\$@\" ; }" >> $aliasPath
+    echo "l. () { ls -CFd .* \"\$@\" ; }" >> $aliasPath
+    echo "ll () { ls -l \"\$@\" ; }" >> $aliasPath
+    echo "ll. () { ls -ld .* \"\$@\" ; }" >> $aliasPath
+    echo "la () { ls -A \"\$@\" ; }" >> $aliasPath
+    echo "lal () { ls -Al \"\$@\" ; }" >> $aliasPath 
+    echo "lla () { ls -al \"\$@\" ; }" >> $aliasPath
+    echo "lst () { ls -alhF \"\$@\" ; }" >> $aliasPath 
+    echo "lsd () { ls -A --group-directories-first \"\$@\" ; }" >> $aliasPath
+    echo "lad () { ls -Al --group-directories-first \"\$@\" ; }" >> $aliasPath
+    echo "lld () { ls -al --group-directories-first \"\$@\" ; }" >> $aliasPath
+    echo "lsz () { ls -alh \$@ | grep -v \"^[d|b|c|l|p|s|-]\" \"\$@\" ; }" >> $aliasPath
+    echo "ltr () { ls -lR \"\$@\" ; }" >> $aliasPath
+    echo "dird () { dir -al --group-directories-first \"\$@\" ; }" >> $aliasPath
+    echo "dfh () { df -h \"\$@\" ; }" >> $aliasPath
+    echo "duh () { du -h \"\$@\" ; }" >> $aliasPath
+    echo "find. () { find . \"\$@\" ; }" >> $aliasPath
+    echo "findh () { find ~ \"\$@\" ; }" >> $aliasPath
+    echo "findr () { find / \"\$@\" ; }" >> $aliasPath
+    echo "cls () { clear ; }" >> $aliasPath
+    echo "his () { history \"\$@\" ; }" >> $aliasPath
     if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
-        echo "hisp () { history -p ; }" >> $aliasrcPath
-        echo "hisc () { echo -n > ~/.zsh_history && history -p  && exec $SHELL -l; }" >> $aliasrcPath
-        echo "hisca () { echo -n > ~/.zsh_history && history -p && rm -f ~/.bash_history; rm -f ~/.node_repl_history; rm -f ~/.python_history; exec $SHELL -l; }" >> $aliasrcPath
+        echo "hisp () { history -p ; }" >> $aliasPath
+        echo "hisc () { echo -n > ~/.zsh_history && history -p  && exec $SHELL -l; }" >> $aliasPath
+        echo "hisca () { echo -n > ~/.zsh_history && history -p && rm -f ~/.bash_history; rm -f ~/.node_repl_history; rm -f ~/.python_history; exec $SHELL -l; }" >> $aliasPath
     elif [ -n "`$SHELL -c 'echo $BASH_VERSION'`" ]; then
-        echo "hisc () { history -c ; }" >> $aliasrcPath
+        echo "hisc () { history -c ; }" >> $aliasPath
     fi
-    echo "shdn () { sudo shutdown \"\$@\" ; } " >> $aliasrcPath
-    echo "shdnh () { sudo shutdown -h now ; } " >> $aliasrcPath
-    echo "shdnr () { sudo shutdown -r now ; } " >> $aliasrcPath
-    # echo "vi () { command vim \"\$@\" ; }" >> $aliasrcPath
-    echo "vin () { vim \"+set nu\" \"\$@\" ; }" >> $aliasrcPath
-    echo "svi () { sudo vim \"\$@\" ; }" >> $aliasrcPath
-    echo "svim () { sudo vim \"\$@\" ; }" >> $aliasrcPath
-    echo "nvi () { nvim \"\$@\" ; }" >> $aliasrcPath
-    echo "snvi () { sudo nvim \"\$@\" ; }" >> $aliasrcPath
-    echo "snvim () { sudo nvim \"\$@\" ; }" >> $aliasrcPath
-    echo "emcs () { emacs \"\$@\" ; }" >> $aliasrcPath
-    echo "semcs () { sudo emacs \"\$@\" ; }" >> $aliasrcPath
-    echo "semacs () { sudo emacs \"\$@\" ; }" >> $aliasrcPath
-    echo "dif() { diff \$1 \$2 | bat -l diff ; }" >> $aliasrcPath
-    echo "dfr() { diff -u \$1 \$2 | diffr --line-numbers; }" >> $aliasrcPath
-    echo "gsdif() { while [[ \$# -gt 0 ]] ; do ; git show \"\${1}\" | bat -l diff ; shift ; done ; }" >> $aliasrcPath
-    echo "gsdfr() { while [[ \$# -gt 0 ]] ; do ; git show \"\${1}\" | diffr --line-numbers ; shift ; done ; }" >> $aliasrcPath
+    echo "shdn () { sudo shutdown \"\$@\" ; } " >> $aliasPath
+    echo "shdnh () { sudo shutdown -h now ; } " >> $aliasPath
+    echo "shdnr () { sudo shutdown -r now ; } " >> $aliasPath
+    echo "vin () { vim \"+set nu\" \"\$@\" ; }" >> $aliasPath
+    echo "svi () { sudo vim \"\$@\" ; }" >> $aliasPath
+    echo "svim () { sudo vim \"\$@\" ; }" >> $aliasPath
+    echo "nvi () { nvim \"\$@\" ; }" >> $aliasPath
+    echo "snvi () { sudo nvim \"\$@\" ; }" >> $aliasPath
+    echo "snvim () { sudo nvim \"\$@\" ; }" >> $aliasPath
+    echo "emcs () { emacs \"\$@\" ; }" >> $aliasPath
+    echo "semcs () { sudo emacs \"\$@\" ; }" >> $aliasPath
+    echo "semacs () { sudo emacs \"\$@\" ; }" >> $aliasPath
+    echo "dif() { diff \$1 \$2 | bat -l diff ; }" >> $aliasPath
+    echo "dfr() { diff -u \$1 \$2 | diffr --line-numbers; }" >> $aliasPath
+    echo "gsdif() { while [[ \$# -gt 0 ]] ; do ; git show \"\${1}\" | bat -l diff ; shift ; done ; }" >> $aliasPath
+    echo "gsdfr() { while [[ \$# -gt 0 ]] ; do ; git show \"\${1}\" | diffr --line-numbers ; shift ; done ; }" >> $aliasPath
 
-    echo "\n\n# ALIAS FOR COMMAND" >> $aliasrcPath
-    echo "alias da='date'" >> $aliasrcPath
-    echo "alias ca='cal'" >> $aliasrcPath
-    echo "alias c='clear'" >> $aliasrcPath
-    echo "alias f='finger'" >> $aliasrcPath
-    echo "alias j='jobs -l'" >> $aliasrcPath
-    echo "alias bc='bc -l'" >> $aliasrcPath
-    echo "alias reboot='sudo reboot'" >> $aliasrcPath
-    echo "alias shutdown='sudo shutdown'" >> $aliasrcPath
+    # Alias command part
+    echo "\n\n# ALIAS FOR COMMAND" >> $aliasPath
+    echo "alias da='date'" >> $aliasPath
+    echo "alias ca='cal'" >> $aliasPath
+    echo "alias c='clear'" >> $aliasPath
+    echo "alias f='finger'" >> $aliasPath
+    echo "alias j='jobs -l'" >> $aliasPath
+    echo "alias bc='bc -l'" >> $aliasPath
+    echo "alias reboot='sudo reboot'" >> $aliasPath
+    echo "alias shutdown='sudo shutdown'" >> $aliasPath
 
-    echo "\n\n# DISABLED COMMAND" >> $aliasrcPath
-    echo "#alias vi='vim'             # replace vi -> vim" >> $aliasrcPath
-    echo "#alias top='htop'           # replace top -> htop" >> $aliasrcPath
-    echo "#alias wget='wget -c'       # continue download default" >> $aliasrcPath
-    echo "#alias curl='curl -w \"\\\n\"'  # ignore output % (=warning) when use zsh" >> $aliasrcPath
+    # Disabed alias command part
+    echo "\n\n# DISABLED COMMAND" >> $aliasPath
+    echo "#alias vi='vim'             # replace vi -> vim" >> $aliasPath
+    echo "#alias top='htop'           # replace top -> htop" >> $aliasPath
+    echo "#alias wget='wget -c'       # continue download default" >> $aliasPath
+    echo "#alias curl='curl -w \"\\\n\"'  # ignore output % (=warning) when use zsh" >> $aliasPath
     if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-        echo "#alias dnf='sudo dnf'          # for redhat-based family" >> $aliasrcPath
-        echo "#alias yum='sudo yum'          # legacy of redhat-based family" >> $aliasrcPath
-        echo "#alias apt='sudo apt'          # for debian-based family" >> $aliasrcPath
-        echo "#alias apt-get='sudo apt-get'  # legacy of debian-based family" >> $aliasrcPath
-        echo "#alias pacman='sudo pacman'    # for arch-based family" >> $aliasrcPath
-        echo "#alias zypper='sudo zypper'    # for suse-based family" >> $aliasrcPath
-        echo "#alias nft='sudo nft'                # firewall management tool: nftables (netfilter table)" >> $aliasrcPath
-        echo "#alias ufw='sudo ufw'                # firewall management tool: ufw (uncomplicated firewall)" >> $aliasrcPath
-        echo "#alias firewall='sudo firewall-cmd'  # firewall management tool: firewall" >> $aliasrcPath
-        echo "#alias iptables='sudo iptables'      # legacy of nefirewall management tool" >> $aliasrcPath
+        echo "#alias dnf='sudo dnf'          # for redhat-based family" >> $aliasPath
+        echo "#alias yum='sudo yum'          # legacy of redhat-based family" >> $aliasPath
+        echo "#alias apt='sudo apt'          # for debian-based family" >> $aliasPath
+        echo "#alias apt-get='sudo apt-get'  # legacy of debian-based family" >> $aliasPath
+        echo "#alias pacman='sudo pacman'    # for arch-based family" >> $aliasPath
+        echo "#alias zypper='sudo zypper'    # for suse-based family" >> $aliasPath
+        echo "#alias nft='sudo nft'                # firewall management tool: nftables (netfilter table)" >> $aliasPath
+        echo "#alias ufw='sudo ufw'                # firewall management tool: ufw (uncomplicated firewall)" >> $aliasPath
+        echo "#alias firewall='sudo firewall-cmd'  # firewall management tool: firewall" >> $aliasPath
+        echo "#alias iptables='sudo iptables'      # legacy of nefirewall management tool" >> $aliasPath
     fi
 }
 
-shrc() {
+end() {
     if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
         echo " - Add on .zprofile file..."
         echo "\n# Alias4sh" >> $HOME/.zprofile
-        echo "source ~/.config/alias4sh/aliasrc \n" >> $HOME/.zprofile
+        echo "source $aliasPath\n" >> $HOME/.zprofile
         echo "\nDone! \n • Try \"source ~/.zprofile\" or restart Terminal to load the aliases.\n"
     elif [ -n "`$SHELL -c 'echo $BASH_VERSION'`" ]; then
         echo " - Add on .bash_profile file..."
         echo "\n# Alias4sh" >> $HOME/.bash_profile
-        echo "source ~/.config/alias4sh/aliasrc \n" >> $HOME/.bash_profile
+        echo "source $aliasPath\n" >> $HOME/.bash_profile
         echo "\nDone! \n • Try \"source ~/.bash_profile\" or Terminal to load the aliases.\n"
     fi
 }
@@ -187,16 +194,18 @@ logo
 echo " - Check shell type and OS!"
 if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ] || [ -n "`$SHELL -c 'echo $BASH_VERSION'`" ]; then
     if [ "$(uname)" == "Darwin" ] || [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-        if [ -f "$aliasrcPath" ]; then
-            echo " - Reinstalled Alias4sh!"
-            rm -f $aliasrcPath
-            main
-            echo "\nDone! \n • Restart your shell or restart Terminal to load the aliases to your shell‘s profile."
-            echo " • If not work, check "source ~/.config/alias4sh/aliasrc" code in your shell resoure file (.zprofile or .bash_profile). \n"
-        else
+        if ! [ -f "$aliasPath" ]; then
             echo " - Install Alias4sh, wait a moment..."
             main
-            shrc
+            end
+        elif [ -f "$aliasPath" ]; then
+            echo " - Reinstalled Alias4sh!"
+            rm -f $aliasPath
+            main
+            echo "\nDone! \n • Restart your shell or restart Terminal to load the aliases to your shell‘s profile."
+            echo " • If not work, check \"source ~/.config/alias4sh/alias.sh\" code in your shell resoure file (.zprofile or .bash_profile). \n"
+        else
+            echo " • Someting wrong. Please check persmission or file path."
         fi
     else
         echo "\nSorry, not support OS. Only supoort macOS and Linux.\n"
