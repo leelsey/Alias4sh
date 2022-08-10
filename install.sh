@@ -15,38 +15,46 @@ main() {
 
     echo "\n# EXTENDED COMMAND" >> $aliasrcPath
     echo "\n# Enviroment" >> $aliasrcPath
-    echo "shrl () { echo \"reloaded shell\" && exec -l $SHELL ; }" >> $aliasrcPath
-    echo "zshrl () {" >> $aliasrcPath
-    echo "  if [ -f $HOME/.zprofile ] || [ -f $HOME/.zprofile ]; then" >> $aliasrcPath
-    echo "    source $HOME/.zprofile && source $HOME/.zshrc ;" >> $aliasrcPath
-    echo "    echo "reloaded zprofile and zshrc" ;" >> $aliasrcPath
-    echo "  elif [ -f $HOME/.zshrc ]; then" >> $aliasrcPath
-    echo "    command source $HOME/.zshrc ;" >> $aliasrcPath
-    echo "    echo "reloaded zshrc" ;" >> $aliasrcPath
-    echo "  elif [ -f $HOME/.zprofile ]; then" >> $aliasrcPath
-    echo "    command source $HOME/.zprofile ;" >> $aliasrcPath
-    echo "    echo "reloaded zprofile" ;" >> $aliasrcPath
-    echo "  else" >> $aliasrcPath
-    echo "    echo "shrl: No enviromnet file found"" >> $aliasrcPath
-    echo "  fi" >> $aliasrcPath
-    echo "}" >> $aliasrcPath
-    echo "bashrl () {" >> $aliasrcPath
-    echo "  if [ -f $HOME/.bash_profile ] || [ -f $HOME/.bashrc ]; then" >> $aliasrcPath
-    echo "    source $HOME/.bash_profile && source $HOME/.bashrc ;" >> $aliasrcPath
-    echo "    echo "reloaded bash_profile and bashrc" ;" >> $aliasrcPath
-    echo "  elif [ -f $HOME/.bashrc ]; then" >> $aliasrcPath
-    echo "    command source $HOME/.bashrc ;" >> $aliasrcPath
-    echo "    echo "reloaded bashrc" ;" >> $aliasrcPath
-    echo "  elif [ -f $HOME/.bash_profile ]; then" >> $aliasrcPath
-    echo "    command source $HOME/.bash_profile ;" >> $aliasrcPath
-    echo "    echo "reloaded bash_profile" ;" >> $aliasrcPath
-    echo "  else" >> $aliasrcPath
-    echo "    echo "shrl: no enviromnet file found"" >> $aliasrcPath
-    echo "  fi" >> $aliasrcPath
-    echo "}" >> $aliasrcPath
     echo "if [ $UID -ne 0 ]; then" >> $aliasrcPath
     echo "  admin () { command sudo -i ; } " >> $aliasrcPath
     echo "fi" >> $aliasrcPath
+    echo "shrl () { echo \"reloaded shell\" && exec -l $SHELL ; }" >> $aliasrcPath
+    if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
+        echo "zshrl () {" >> $aliasrcPath
+        echo "  if [ -f $HOME/.zprofile ] || [ -f $HOME/.zprofile ]; then" >> $aliasrcPath
+        echo "    source $HOME/.zprofile && source $HOME/.zshrc ;" >> $aliasrcPath
+        echo "    echo "reloaded zprofile and zshrc" ;" >> $aliasrcPath
+        echo "  elif [ -f $HOME/.zshrc ]; then" >> $aliasrcPath
+        echo "    command source $HOME/.zshrc ;" >> $aliasrcPath
+        echo "    echo "reloaded zshrc" ;" >> $aliasrcPath
+        echo "  elif [ -f $HOME/.zprofile ]; then" >> $aliasrcPath
+        echo "    command source $HOME/.zprofile ;" >> $aliasrcPath
+        echo "    echo "reloaded zprofile" ;" >> $aliasrcPath
+        echo "  else" >> $aliasrcPath
+        echo "    echo "shrl: No environment file found"" >> $aliasrcPath
+        echo "  fi" >> $aliasrcPath
+        echo "}" >> $aliasrcPath
+        echo "zshenv () { vi $HOME/.zshenv ; }" >> $aliasrcPath
+        echo "zprofile () { vi $HOME/.zprofile ; }" >> $aliasrcPath
+        echo "zshrc () { vi $HOME/.zshrc ; }" >> $aliasrcPath
+        echo "zlogin () { vi $HOME/.zlogin ; }" >> $aliasrcPath
+        echo "zlogout () { vi $HOME/.zlogout ; }" >> $aliasrcPath
+    elif [ -n "`$SHELL -c 'echo $BASH_VERSION'`" ]; then
+        echo "bashrl () {" >> $aliasrcPath
+        echo "  if [ -f $HOME/.bash_profile ] || [ -f $HOME/.bashrc ]; then" >> $aliasrcPath
+        echo "    source $HOME/.bash_profile && source $HOME/.bashrc ;" >> $aliasrcPath
+        echo "    echo "reloaded bash_profile and bashrc" ;" >> $aliasrcPath
+        echo "  elif [ -f $HOME/.bashrc ]; then" >> $aliasrcPath
+        echo "    command source $HOME/.bashrc ;" >> $aliasrcPath
+        echo "    echo "reloaded bashrc" ;" >> $aliasrcPath
+        echo "  elif [ -f $HOME/.bash_profile ]; then" >> $aliasrcPath
+        echo "    command source $HOME/.bash_profile ;" >> $aliasrcPath
+        echo "    echo "reloaded bash_profile" ;" >> $aliasrcPath
+        echo "  else" >> $aliasrcPath
+        echo "    echo "shrl: no environment file found"" >> $aliasrcPath
+        echo "  fi" >> $aliasrcPath
+        echo "}" >> $aliasrcPath
+    fi
 
     echo "\n# Default Option" >> $aliasrcPath
     echo "chmod () { command chmod -v --preserve-root \"\$@\" ; }" >> $aliasrcPath
@@ -131,8 +139,6 @@ main() {
     echo "dfr() { diff -u \$1 \$2 | diffr --line-numbers; }" >> $aliasrcPath
     echo "gsdif() { while [[ \$# -gt 0 ]] ; do ; git show \"\${1}\" | bat -l diff ; shift ; done ; }" >> $aliasrcPath
     echo "gsdfr() { while [[ \$# -gt 0 ]] ; do ; git show \"\${1}\" | diffr --line-numbers ; shift ; done ; }" >> $aliasrcPath
-    # echo "gsdif() {\n  while [[ $# -gt 0 ]]\n  do\n    git show "${1}" | bat -l diff;\n    shift\n  done\n}" >> $aliasrcPath
-    # echo "gsdfr() {\n  while [[ $# -gt 0 ]]\n  do\n    git show "${1}" | diffr --line-numbers;\n    shift\n  done\n}" >> $aliasrcPath
 
     echo "\n\n# ALIAS FOR COMMAND" >> $aliasrcPath
     echo "alias da='date'" >> $aliasrcPath
@@ -162,6 +168,7 @@ main() {
         echo "#alias iptables='sudo iptables'      # legacy of nefirewall management tool" >> $aliasrcPath
     fi
 }
+
 shrc() {
     if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
         echo " - Add on .zprofile file..."
@@ -174,8 +181,8 @@ shrc() {
         echo "source ~/.config/alias4sh/aliasrc \n" >> $HOME/.bash_profile
         echo "\nDone! \n • Try \"source ~/.bash_profile\" or Terminal to load the aliases.\n"
     fi
-    # exec -l $SHELL ;
 }
+
 logo
 echo " - Check shell type and OS!"
 if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ] || [ -n "`$SHELL -c 'echo $BASH_VERSION'`" ]; then
