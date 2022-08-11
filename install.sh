@@ -150,8 +150,12 @@ main() {
     echo "      cd ..;" >> $aliasPath
     echo "    elif [ \$# -eq 1 ]; then" >> $aliasPath
     echo "      if [[ \$1 =~ '^[0-9]+$' ]]; then" >> $aliasPath
-    echo "        printf -v cdpFull '%*s' \$1 ;" >> $aliasPath
-    echo "        cd \"\${cdpFull// /\"../\"} ;" >> $aliasPath
+    echo "        if [[ $1 == 0 ]]; then" >> $aliasPath
+    echo "          pwd ;" >> $aliasPath
+    echo "        else" >> $aliasPath
+    echo "          printf -v cdpFull '%*s' \$1 ;" >> $aliasPath
+    echo "          cd \"\${cdpFull// /\"../\"} ;" >> $aliasPath
+    echo "        fi;" >> $aliasPath
     echo "      elif [[ \$1 =~ '^[h]+$' ]] || [[ \$1 == ~ ]]; then" >> $aliasPath
     echo "        cd ~ ;" >> $aliasPath
     echo "      elif [[ \$1 =~ '^[r]+$' ]] || [[ \$1 == / ]]; then" >> $aliasPath
