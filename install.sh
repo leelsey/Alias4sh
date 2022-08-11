@@ -144,6 +144,51 @@ main() {
     echo "dfr() { diff -u \$1 \$2 | diffr --line-numbers; }" >> $aliasPath
     echo "gsdif() { while [[ \$# -gt 0 ]] ; do ; git show \"\${1}\" | bat -l diff ; shift ; done ; }" >> $aliasPath
     echo "gsdfr() { while [[ \$# -gt 0 ]] ; do ; git show \"\${1}\" | diffr --line-numbers ; shift ; done ; }" >> $aliasPath
+    echo "if ! [ -f $HOME/.p/p.sh ]; then" >> $aliasPath
+    echo "  p() {" >> $aliasPath
+    echo "    if [ \$# -eq 0 ]; then" >> $aliasPath
+    echo "      cd ..;" >> $aliasPath
+    echo "    elif [ \$# -eq 1 ]; then" >> $aliasPath
+    echo "      if [[ \$1 =~ '^[0-9]+$' ]]; then" >> $aliasPath
+    echo "        local cdpStr='../'" >> $aliasPath
+    echo "        local cdpOpt=\$1" >> $aliasPath
+    echo "        printf -v cdpFull '%*s' \$cdpOpt" >> $aliasPath
+    echo "        cd \"\${cdpFull// /\$cdpStr}\" ;" >> $aliasPath
+    echo "      elif [[ \$1 =~ '^[h]+$' ]] || [[ \$1 == ~ ]]; then" >> $aliasPath
+    echo "        cd ~ ;" >> $aliasPath
+    echo "      elif [[ \$1 =~ '^[r]+$' ]] || [[ \$1 == / ]]; then" >> $aliasPath
+    echo "        cd / ;" >> $aliasPath
+    echo "      elif [[ \$1 =~ '^[b]+$' ]] || [[ \$1 == - ]]; then" >> $aliasPath
+    echo "        cd - ;" >> $aliasPath
+    echo "      elif [[ \$1 == des ]] || [[ \$1 == Des ]]; then" >> $aliasPath
+    echo "        cd ~/Desktop ;" >> $aliasPath
+    echo "      elif [[ \$1 == doc ]] || [[ \$1 == Doc ]]; then" >> $aliasPath
+    echo "        cd ~/Documents ;" >> $aliasPath
+    echo "      elif [[ \$1 == dow ]] || [[ \$1 == Dow ]]; then" >> $aliasPath
+    echo "        cd ~/Downloads ;" >> $aliasPath
+    echo "      elif [[ \$1 == mov ]] || [[ \$1 == Mov ]]; then" >> $aliasPath
+    echo "        cd ~/Movies ;" >> $aliasPath
+    echo "      elif [[ \$1 == mus ]] || [[ \$1 == Mus ]]; then" >> $aliasPath
+    echo "        cd ~/Music ;" >> $aliasPath
+    echo "      elif [[ \$1 == pic ]] || [[ \$1 == Pic ]]; then" >> $aliasPath
+    echo "        cd ~/Pictures ;" >> $aliasPath
+    echo "      elif [[ \$1 == vid ]] || [[ \$1 == Vid ]]; then" >> $aliasPath
+    echo "        cd ~/Videos ;" >> $aliasPath
+    echo "      elif [[ \$1 =~ '^[p]+$' ]]; then" >> $aliasPath
+    echo "        pwd ;" >> $aliasPath
+    echo "      else" >> $aliasPath
+    echo "        echo "p: wrong usage" ;" >> $aliasPath
+    echo "      fi" >> $aliasPath
+    echo "    else" >> $aliasPath
+    echo "      echo "p: wrong usage" ;" >> $aliasPath
+    echo "    fi" >> $aliasPath
+    echo "  }" >> $aliasPath
+    echo "  cdp () { p ; }" >> $aliasPath
+    echo "  cdh () { cd ~ ; }" >> $aliasPath
+    echo "  cdr () { cd / ; }" >> $aliasPath
+    echo "elif [ -f $HOME/.ƒ/p.sh ]; then" >> $aliasPath
+    echo "  echo \" \" " >> $aliasPath
+    echo "fi" >> $aliasPath
 
     # Alias command part
     echo "\n\n# ALIAS FOR COMMAND" >> $aliasPath
