@@ -156,12 +156,14 @@ main() {
     echo "          printf -v cdpFull '%*s' \$1 ;" >> $aliasPath
     echo "          cd \"\${cdpFull// /\"../\"} ;" >> $aliasPath
     echo "        fi;" >> $aliasPath
-    echo "      elif [[ \$1 =~ '^[h]+$' ]] || [[ \$1 == ~ ]]; then" >> $aliasPath
-    echo "        cd ~ ;" >> $aliasPath
-    echo "      elif [[ \$1 =~ '^[r]+$' ]] || [[ \$1 == / ]]; then" >> $aliasPath
-    echo "        cd / ;" >> $aliasPath
+    echo "      elif [[ \$1 =~ '^[p]+$' ]]; then" >> $aliasPath
+    echo "        pwd ;" >> $aliasPath
     echo "      elif [[ \$1 =~ '^[b]+$' ]] || [[ \$1 == - ]]; then" >> $aliasPath
     echo "        cd - ;" >> $aliasPath
+    echo "      elif [[ \$1 =~ '^[r]+$' ]] || [[ \$1 == / ]]; then" >> $aliasPath
+    echo "        cd / ;" >> $aliasPath
+    echo "      elif [[ \$1 =~ '^[h]+$' ]] || [[ \$1 == ~ ]]; then" >> $aliasPath
+    echo "        cd ~ ;" >> $aliasPath
     echo "      elif [[ \$1 == des ]] || [[ \$1 == Des ]]; then" >> $aliasPath
     echo "        cd ~/Desktop ;" >> $aliasPath
     echo "      elif [[ \$1 == doc ]] || [[ \$1 == Doc ]]; then" >> $aliasPath
@@ -176,13 +178,25 @@ main() {
     echo "        cd ~/Pictures ;" >> $aliasPath
     echo "      elif [[ \$1 == vid ]] || [[ \$1 == Vid ]]; then" >> $aliasPath
     echo "        cd ~/Videos ;" >> $aliasPath
-    echo "      elif [[ \$1 =~ '^[p]+$' ]]; then" >> $aliasPath
-    echo "        pwd ;" >> $aliasPath
+    echo "      elif [[ \$1 == --help ]] || [[ \$1 == -help ]]; then" >> $aliasPath
+    echo "        echo \"p: go to parent directory\"" >> $aliasPath
+    echo "        echo \"p [number]: go to parent [number]th directory\"" >> $aliasPath
+    echo "        echo \"p p: output current directory\"" >> $aliasPath
+    echo "        echo \"p h: go to home directory\"" >> $aliasPath
+    echo "        echo \"p r: go to root directory\"" >> $aliasPath
+    echo "        echo \"p b: go to previous directory\"" >> $aliasPath
+    echo "        echo \"p des: go to desktop directory\"" >> $aliasPath
+    echo "        echo \"p doc: go to documents directory\"" >> $aliasPath
+    echo "        echo \"p dow: go to downloads directory\"" >> $aliasPath
+    echo "        echo \"p mov: go to movies directory\"" >> $aliasPath
+    echo "        echo \"p mus: go to music directory\"" >> $aliasPath
+    echo "        echo \"p pic: go to pictures directory\"" >> $aliasPath
+    echo "        echo \"p vid: go to videos directory\"" >> $aliasPath
     echo "      else" >> $aliasPath
-    echo "        echo "p: wrong usage" ;" >> $aliasPath
+    echo "        echo \"p: wrong usage\" ;" >> $aliasPath
     echo "      fi" >> $aliasPath
     echo "    else" >> $aliasPath
-    echo "      echo "p: wrong usage" ;" >> $aliasPath
+    echo "      echo \"p: wrong usage\" ;" >> $aliasPath
     echo "    fi" >> $aliasPath
     echo "  }" >> $aliasPath
     echo "  cdp () { p ; }" >> $aliasPath
