@@ -140,10 +140,13 @@ main() {
     echo "emcs () { emacs \"\$@\" ; }" >> $aliasPath
     echo "semcs () { sudo emacs \"\$@\" ; }" >> $aliasPath
     echo "semacs () { sudo emacs \"\$@\" ; }" >> $aliasPath
-    echo "dif() { diff \$1 \$2 | bat -l diff ; }" >> $aliasPath
-    echo "dfr() { diff -u \$1 \$2 | diffr --line-numbers; }" >> $aliasPath
-    echo "gsdif() { while [[ \$# -gt 0 ]] ; do ; git show \"\${1}\" | bat -l diff ; shift ; done ; }" >> $aliasPath
-    echo "gsdfr() { while [[ \$# -gt 0 ]] ; do ; git show \"\${1}\" | diffr --line-numbers ; shift ; done ; }" >> $aliasPath
+    echo "dif () { diff \$1 \$2 | bat -l diff ; }" >> $aliasPath
+    echo "dfr () { diff -u \$1 \$2 | diffr --line-numbers; }" >> $aliasPath
+    echo "gsdif () { while [[ \$# -gt 0 ]] ; do ; git show \"\${1}\" | bat -l diff ; shift ; done ; }" >> $aliasPath
+    echo "gsdfr () { while [[ \$# -gt 0 ]] ; do ; git show \"\${1}\" | diffr --line-numbers ; shift ; done ; }" >> $aliasPath
+    echo "home () { cd '$HOME' ;}" >> $aliasPath
+    echo "icloud () { cd '$HOME/Library/Mobile Documents/com~apple~CloudDocs' ;}" >> $aliasPath
+    echo "dropbox () { cd '$HOME/Dropbox' ;}" >> $aliasPath
     echo "if ! [ -f $HOME/.p/p.sh ]; then" >> $aliasPath
     echo "  p() {" >> $aliasPath
     echo "    if [ \$# -eq 0 ]; then" >> $aliasPath
