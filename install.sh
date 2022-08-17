@@ -37,11 +37,11 @@ main() {
         echo "    echo "shrl: No environment file found"" >> $aliasPath
         echo "  fi" >> $aliasPath
         echo "}" >> $aliasPath
-        echo "zshenv () { vi $HOME/.zshenv ; }" >> $aliasPath
-        echo "zprofile () { vi $HOME/.zprofile ; }" >> $aliasPath
-        echo "zshrc () { vi $HOME/.zshrc ; }" >> $aliasPath
-        echo "zlogin () { vi $HOME/.zlogin ; }" >> $aliasPath
-        echo "zlogout () { vi $HOME/.zlogout ; }" >> $aliasPath
+        echo "vizshenv () { vi $HOME/.zshenv ; }" >> $aliasPath
+        echo "vizprofile () { vi $HOME/.zprofile ; }" >> $aliasPath
+        echo "vizshrc () { vi $HOME/.zshrc ; }" >> $aliasPath
+        echo "vizlogin () { vi $HOME/.zlogin ; }" >> $aliasPath
+        echo "vizlogout () { vi $HOME/.zlogout ; }" >> $aliasPath
     elif [ -n "`$SHELL -c 'echo $BASH_VERSION'`" ]; then
         echo "bashrl () {" >> $aliasPath
         echo "  if [ -f $HOME/.bash_profile ] || [ -f $HOME/.bashrc ]; then" >> $aliasPath
@@ -57,6 +57,11 @@ main() {
         echo "    echo "shrl: no environment file found"" >> $aliasPath
         echo "  fi" >> $aliasPath
         echo "}" >> $aliasPath
+        echo "vibashenv () { vi $HOME/.bash_env ; }" >> $aliasPath
+        echo "vibashprofile () { vi $HOME/.bash_profile ; }" >> $aliasPath
+        echo "vibashrc () { vi $HOME/.bashrc ; }" >> $aliasPath
+        echo "vibashlogin () { vi $HOME/.bash_login ; }" >> $aliasPath
+        echo "vibalogout () { vi $HOME/.bash_logout ; }" >> $aliasPath
     fi
 
     # About default commands options
@@ -132,7 +137,7 @@ main() {
     echo "shdnh () { sudo shutdown -h now ; } " >> $aliasPath
     echo "shdnr () { sudo shutdown -r now ; } " >> $aliasPath
     echo "vin () { vim \"+set nu\" \"\$@\" ; }" >> $aliasPath
-    echo "svi () { sudo vim \"\$@\" ; }" >> $aliasPath
+    echo "svi () { sudo vi \"\$@\" ; }" >> $aliasPath
     echo "svim () { sudo vim \"\$@\" ; }" >> $aliasPath
     echo "nvi () { nvim \"\$@\" ; }" >> $aliasPath
     echo "snvi () { sudo nvim \"\$@\" ; }" >> $aliasPath
