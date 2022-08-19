@@ -79,19 +79,19 @@ main() {
 
     # About colourising for output
     echo "\n# Colourising" >> $aliasPath
-    echo "ls () { command ls --color=auto \$@ ; }" >> $aliasPath
-    echo "dir () { command dir --color=auto \$@ ; }" >> $aliasPath
-    echo "vdir () { command vdir --color=auto \$@ ; }" >> $aliasPath
-    echo "grep () { command grep --color=auto \$@ ; }" >> $aliasPath
-    echo "egrep () { command egrep --color=auto \$@ ; }" >> $aliasPath
-    echo "fgrep () { command fgrep --color=auto \$@ ; }" >> $aliasPath
-    echo "xzegrep () { command xzegrep --color=auto \$@ ; }" >> $aliasPath
-    echo "xzfgrep () { command xzfgrep --color=auto \$@ ; }" >> $aliasPath
-    echo "xzgrep () { command xzgrep --color=auto \$@ ; }" >> $aliasPath
-    echo "zegrep () { command zegrep --color=auto \$@ ; }" >> $aliasPath
-    echo "zfgrep () { command zfgrep --color=auto \$@ ; }" >> $aliasPath
-    echo "zgrep () { command zgrep --color=auto \$@ ; }" >> $aliasPath
-    echo "tree () { command tree -C \$@ ; }" >> $aliasPath
+    echo "ls () { command ls --color=auto \"\$@\" ;  }" >> $aliasPath
+    echo "dir () { command dir --color=auto \"\$@\" ;  }" >> $aliasPath
+    echo "vdir () { command vdir --color=auto \"\$@\" ;  }" >> $aliasPath
+    echo "grep () { command grep --color=auto \"\$@\" ;  }" >> $aliasPath
+    echo "egrep () { command egrep --color=auto \"\$@\" ;  }" >> $aliasPath
+    echo "fgrep () { command fgrep --color=auto \"\$@\" ;  }" >> $aliasPath
+    echo "xzegrep () { command xzegrep --color=auto \"\$@\" ;  }" >> $aliasPath
+    echo "xzfgrep () { command xzfgrep --color=auto \"\$@\" ;  }" >> $aliasPath
+    echo "xzgrep () { command xzgrep --color=auto \"\$@\" ;  }" >> $aliasPath
+    echo "zegrep () { command zegrep --color=auto \"\$@\" ;  }" >> $aliasPath
+    echo "zfgrep () { command zfgrep --color=auto \"\$@\" ;  }" >> $aliasPath
+    echo "zgrep () { command zgrep --color=auto \"\$@\" ;  }" >> $aliasPath
+    echo "tree () { command tree -C \"\$@\" ;  }" >> $aliasPath
     if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
         echo "alias ip addr='ip addr --color'" >> $aliasPath
     fi
@@ -143,7 +143,7 @@ main() {
     echo "pingt () { ping -a -c 5 \"\$@\" ; }" >> $aliasPath
     if [ "$(uname)" == "Darwin" ]; then
         echo "pinga () { ping -a --apple-connect --apple-time \"\$@\" ; }" >> $aliasPath
-        echo "ip () { command ipconfig \$@ ; }" >> $aliasPath
+        echo "ip () { command ipconfig \"\$@\" ;  }" >> $aliasPath
         echo "resetdock () { defaults delete com.apple.dock ; killall Dock ; }" >> $aliasPath
         echo "resetlaunchpad () { defaults write com.apple.dock ResetLaunchPad -bool true ; killall Dock ; }" >> $aliasPath
     fi
