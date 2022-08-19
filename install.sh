@@ -75,12 +75,6 @@ main() {
     echo "ln () { command ln -iv \"\$@\" ; } " >> $aliasPath 
     echo "rmdir () { command rmdir -v \"\$@\" ; } " >> $aliasPath
     echo "mkdir () { command mkdir -v \"\$@\" ; } " >> $aliasPath
-    echo "pings () { ping -a \"\$@\" ; }" >> $aliasPath
-    echo "pingt () { ping -a -c 5 \"\$@\" ; }" >> $aliasPath
-    if [ "$(uname)" == "Darwin" ]; then
-        echo "pinga () { ping -a --apple-connect --apple-time \"\$@\" ; }" >> $aliasPath
-        echo "ip () { command ipconfig \$@ ; }" >> $aliasPath
-    fi
     # echo "vi () { command vim \"\$@\" ; }" >> $aliasPath
 
     # About colourising for output
@@ -145,6 +139,14 @@ main() {
     echo "emcs () { emacs \"\$@\" ; }" >> $aliasPath
     echo "semcs () { sudo emacs \"\$@\" ; }" >> $aliasPath
     echo "semacs () { sudo emacs \"\$@\" ; }" >> $aliasPath
+    echo "pings () { ping -a \"\$@\" ; }" >> $aliasPath
+    echo "pingt () { ping -a -c 5 \"\$@\" ; }" >> $aliasPath
+    if [ "$(uname)" == "Darwin" ]; then
+        echo "pinga () { ping -a --apple-connect --apple-time \"\$@\" ; }" >> $aliasPath
+        echo "ip () { command ipconfig \$@ ; }" >> $aliasPath
+        echo "resetdock () { defaults delete com.apple.dock ; killall Dock ; }" >> $aliasPath
+        echo "resetlaunchpad () { defaults write com.apple.dock ResetLaunchPad -bool true ; killall Dock ; }" >> $aliasPath
+    fi
     echo "dif () { diff \$1 \$2 | bat -l diff ; }" >> $aliasPath
     echo "dfr () { diff -u \$1 \$2 | diffr --line-numbers; }" >> $aliasPath
     echo "gsdif () { while [[ \$# -gt 0 ]] ; do ; git show \"\${1}\" | bat -l diff ; shift ; done ; }" >> $aliasPath
