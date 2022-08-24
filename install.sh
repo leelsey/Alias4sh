@@ -157,7 +157,11 @@ main() {
     echo "iCloud () { cd '$HOME/Library/Mobile Documents/com~apple~CloudDocs' ;}" >> $aliasPath
     echo "dropbox () { cd '$HOME/Dropbox' ;}" >> $aliasPath
     echo "Dropbox () { cd '$HOME/Dropbox' ;}" >> $aliasPath
-    echo "if ! [ -f $HOME/.p/p.sh ] || ! [ -f /usr/local/bin/p]; then" >> $aliasPath
+    if [ "$(uname)" == "Darwin" ]; then 
+        echo "if ! { [ -f $HOME/.p/p ] && [ -f /opt/homebrew/bin/javactl] && [ -f /usr/local/bin/p]; }; then" >> $aliasPath
+    elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+        echo "if ! { [ -f $HOME/.p/p ] && [ -f /usr/bin/p]; }; then" >> $aliasPath
+    fi
     echo "  p() {" >> $aliasPath
     echo "    if [ \$# -eq 0 ]; then" >> $aliasPath
     echo "      cd ..;" >> $aliasPath
@@ -215,10 +219,12 @@ main() {
     echo "  cdp () { p ; }" >> $aliasPath
     echo "  cdh () { cd ~ ; }" >> $aliasPath
     echo "  cdr () { cd / ; }" >> $aliasPath
-    echo "else" >> $aliasPath
-    echo "  echo \" \" " >> $aliasPath
     echo "fi" >> $aliasPath
-    echo "if ! [ -d \$HOME/.asdf/plugins/java ]; then" >> $aliasPath
+    if [ "$(uname)" == "Darwin" ]; then 
+        echo "if ! { [ -f $HOME/.javactl/javactl ] && [ -f /opt/homebrew/bin/javactl] && [ -f /usr/local/bin/javactl]; }; then" >> $aliasPath
+    elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+        echo "if ! { [ -f $HOME/.javactl/javactl ] && [ -f /usr/bin/javactl]; }; then" >> $aliasPath
+    fi
     echo "  javahome () {" >> $aliasPath
     echo "    if [ \"\$#\" -eq 0 ]; then" >> $aliasPath
     echo "      /usr/libexec/java_home -V ;" >> $aliasPath
@@ -230,10 +236,7 @@ main() {
     echo "      echo \"javahome: wrong usage\"" >> $aliasPath
     echo "    fi" >> $aliasPath
     echo "  }" >> $aliasPath
-    echo "else" >> $aliasPath
-    echo "  source \$HOME/.asdf/plugins/java/set-java-home.zsh" >> $aliasPath
-    echo "  javahome () { echo \"javahome: using asdf-vm now, use \"asdf list java\"\" ; }" >> $aliasPath
-    echo "fi" >> $aliasPath
+    echo "fi" >> $aliasPath 
 
     # Alias command part
     echo "\n\n# ALIAS FOR COMMAND" >> $aliasPath
