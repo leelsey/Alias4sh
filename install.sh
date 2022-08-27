@@ -66,15 +66,15 @@ main() {
 
     # About default commands options
     echo "\n# Default Option" >> $aliasPath
-    echo "chmod () { command chmod -v --preserve-root \"\$@\" ; }" >> $aliasPath
-    echo "chown () { command chown -v --preserve-root \"\$@\" ; }" >> $aliasPath
-    echo "chgrp () { command chgrp -v --preserve-root \"\$@\" ; }" >> $aliasPath
-    echo "rm () { command rm -Iv --preserve-root \"\$@\" ; } " >> $aliasPath
-    echo "mv () { command mv -iv \"\$@\" ; } " >> $aliasPath 
-    echo "cp () { command cp -iv \"\$@\" ; } " >> $aliasPath 
-    echo "ln () { command ln -iv \"\$@\" ; } " >> $aliasPath 
-    echo "rmdir () { command rmdir -v \"\$@\" ; } " >> $aliasPath
-    echo "mkdir () { command mkdir -v \"\$@\" ; } " >> $aliasPath
+    echo "chmod () { command chmod --preserve-root \"\$@\" ; }" >> $aliasPath
+    echo "chown () { command chown --preserve-root \"\$@\" ; }" >> $aliasPath
+    echo "chgrp () { command chgrp --preserve-root \"\$@\" ; }" >> $aliasPath
+    echo "rm () { command rm -I --preserve-root \"\$@\" ; } " >> $aliasPath
+    echo "mv () { command mv -i \"\$@\" ; } " >> $aliasPath 
+    echo "cp () { command cp -i \"\$@\" ; } " >> $aliasPath 
+    echo "ln () { command ln -i \"\$@\" ; } " >> $aliasPath 
+    # echo "rmdir () { command rmdir -v \"\$@\" ; } " >> $aliasPath
+    # echo "mkdir () { command mkdir -v \"\$@\" ; } " >> $aliasPath
     # echo "vi () { command vim \"\$@\" ; }" >> $aliasPath
 
     # About colourising for output
@@ -237,7 +237,23 @@ main() {
     echo "    fi" >> $aliasPath
     echo "  }" >> $aliasPath
     echo "fi" >> $aliasPath 
-
+    if [ "$(uname)" == "Darwin" ]; then 
+        echo "iconchange () {" >> $aliasPath
+        echo "  tFile=\"\$1\"" >> $aliasPath
+        echo "  destFile=\"\$2\"" >> $aliasPath
+        echo "  if [[ \"\$tgFile\" =~ ^https?:// ]]; then" >> $aliasPath
+        echo "    curl -sLo /tmp/iconchange \"\$tgFile\" ;" >> $aliasPath
+        echo "    tgFile=/tmp/iconchange" >> $aliasPath
+        echo "  fi" >> $aliasPath
+        echo "  rm -rf "$destFile\"\$'/Icon\r'\" >> $aliasPath
+        echo "  sips \"\$tgFile\" > /dev/null" >> $aliasPath
+        echo "  DeRez -only icns \"\$tgFile\" > /tmp/icns.rsrc" >> $aliasPath
+        echo "  Rez -append /tmp/icns.rsrc -o \"\$destFile\"\$'/Icon\r'" >> $aliasPath
+        echo "  SetFile -a C \"\$destFile\"" >> $aliasPath
+        echo "  SetFile -a V \"\$destFile\"\$'/Icon\r'" >> $aliasPath
+        echo "  rm -rf /tmp/icns.rsrc" >> $aliasPath
+        echo "}" >> $aliasPath
+    fi
     # Alias command part
     echo "\n\n# ALIAS FOR COMMAND" >> $aliasPath
     echo "alias da='date'" >> $aliasPath
