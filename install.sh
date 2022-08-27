@@ -162,7 +162,7 @@ main() {
     elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
         echo "if ! { [ -f $HOME/.p/p ] && [ -f /usr/bin/p]; }; then" >> $aliasPath
     fi
-    echo "  p() {" >> $aliasPath
+    echo "  p () {" >> $aliasPath
     echo "    if [ \$# -eq 0 ]; then" >> $aliasPath
     echo "      cd ..;" >> $aliasPath
     echo "    elif [ \$# -eq 1 ]; then" >> $aliasPath
@@ -238,20 +238,20 @@ main() {
     echo "  }" >> $aliasPath
     echo "fi" >> $aliasPath 
     if [ "$(uname)" == "Darwin" ]; then 
-        echo "iconchange () {" >> $aliasPath
-        echo "  tFile=\"\$1\"" >> $aliasPath
+        echo "chicn () {" >> $aliasPath
+        echo "  tgFile=\"\$1\"" >> $aliasPath
         echo "  destFile=\"\$2\"" >> $aliasPath
         echo "  if [[ \"\$tgFile\" =~ ^https?:// ]]; then" >> $aliasPath
-        echo "    curl -sLo /tmp/iconchange \"\$tgFile\" ;" >> $aliasPath
+        echo "    curl -sLo /tmp/ic \"\$tgFile\" ;" >> $aliasPath
         echo "    tgFile=/tmp/iconchange" >> $aliasPath
         echo "  fi" >> $aliasPath
-        echo "  rm -rf "$destFile\"\$'/Icon\r'\" >> $aliasPath
-        echo "  sips \"\$tgFile\" > /dev/null" >> $aliasPath
-        echo "  DeRez -only icns \"\$tgFile\" > /tmp/icns.rsrc" >> $aliasPath
-        echo "  Rez -append /tmp/icns.rsrc -o \"\$destFile\"\$'/Icon\r'" >> $aliasPath
+        echo "  rm -rf \"\$destFile\"\$'/Icon\\\r'" >> $aliasPath
+        echo "  sips -i \"\$tgFile\" > /dev/null" >> $aliasPath
+        echo "  DeRez -only icns \"\$tgFile\" > /tmp/icnch.rsrc" >> $aliasPath
+        echo "  Rez -append /tmp/icnch.rsrc -o \"\$destFile\"\$'/Icon\\\r'" >> $aliasPath
         echo "  SetFile -a C \"\$destFile\"" >> $aliasPath
-        echo "  SetFile -a V \"\$destFile\"\$'/Icon\r'" >> $aliasPath
-        echo "  rm -rf /tmp/icns.rsrc" >> $aliasPath
+        echo "  SetFile -a V \"\$destFile\"\$'/Icon\\\r'" >> $aliasPath
+        echo "  rm -rf /tmp/icnch /tmp/tmp/icnch.rsrc" >> $aliasPath
         echo "}" >> $aliasPath
     fi
     # Alias command part
