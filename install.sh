@@ -35,15 +35,15 @@ main() {
         echo "zshrl () {" >> $aliasPath
         echo "  if [ -f $HOME/.zprofile ] || [ -f $HOME/.zprofile ]; then" >> $aliasPath
         echo "    source $HOME/.zprofile && source $HOME/.zshrc ;" >> $aliasPath
-        echo "    echo "reloaded zprofile and zshrc" ;" >> $aliasPath
+        echo "    echo \"reloaded zprofile and zshrc\" ;" >> $aliasPath
         echo "  elif [ -f $HOME/.zshrc ]; then" >> $aliasPath
         echo "    command source $HOME/.zshrc ;" >> $aliasPath
-        echo "    echo "reloaded zshrc" ;" >> $aliasPath
+        echo "    echo \"reloaded zshrc\" ;" >> $aliasPath
         echo "  elif [ -f $HOME/.zprofile ]; then" >> $aliasPath
         echo "    command source $HOME/.zprofile ;" >> $aliasPath
-        echo "    echo "reloaded zprofile" ;" >> $aliasPath
+        echo "    echo \"reloaded zprofile\" ;" >> $aliasPath
         echo "  else" >> $aliasPath
-        echo "    echo "shrl: No environment file found"" >> $aliasPath
+        echo "    echo \"shrl: No environment file found\"" >> $aliasPath
         echo "  fi" >> $aliasPath
         echo "}" >> $aliasPath
         echo "vizshenv () { vi $HOME/.zshenv ; }" >> $aliasPath
@@ -55,15 +55,15 @@ main() {
         echo "bashrl () {" >> $aliasPath
         echo "  if [ -f $HOME/.bash_profile ] || [ -f $HOME/.bashrc ]; then" >> $aliasPath
         echo "    source $HOME/.bash_profile && source $HOME/.bashrc ;" >> $aliasPath
-        echo "    echo "reloaded bash_profile and bashrc" ;" >> $aliasPath
+        echo "    echo \"reloaded bash_profile and bashrc\" ;" >> $aliasPath
         echo "  elif [ -f $HOME/.bashrc ]; then" >> $aliasPath
         echo "    command source $HOME/.bashrc ;" >> $aliasPath
-        echo "    echo "reloaded bashrc" ;" >> $aliasPath
+        echo "    echo \"reloaded bashrc\" ;" >> $aliasPath
         echo "  elif [ -f $HOME/.bash_profile ]; then" >> $aliasPath
         echo "    command source $HOME/.bash_profile ;" >> $aliasPath
-        echo "    echo "reloaded bash_profile" ;" >> $aliasPath
+        echo "    echo \"reloaded bash_profile\" ;" >> $aliasPath
         echo "  else" >> $aliasPath
-        echo "    echo "shrl: no environment file found"" >> $aliasPath
+        echo "    echo \"shrl: no environment file found\"" >> $aliasPath
         echo "  fi" >> $aliasPath
         echo "}" >> $aliasPath
         echo "vibashenv () { vi $HOME/.bash_env ; }" >> $aliasPath
