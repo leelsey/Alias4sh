@@ -21,6 +21,15 @@ main() {
     echo "if [ $UID -ne 0 ]; then" >> $aliasPath
     echo "  admin () { command sudo -i ; } " >> $aliasPath
     echo "fi" >> $aliasPath
+    if [ "$(uname)" == "Darwin" ]; then
+        echo "macreset () {" >> $aliasPath
+        echo "  defaults delete com.apple.dock ;" >> $aliasPath
+        echo "  killall Dock ; defaults write com.apple.dock ResetLaunchPad -bool true ;" >> $aliasPath
+        echo "  killall Finder ;" >> $aliasPath
+        echo "  echo \"reseted dock and launchpad\" ;" >> $aliasPath
+        echo "}" >> $aliasPath
+        echo "macrl () { killall Dock ; killall Finder ; echo \"reloaded finder and \"}" >> $aliasPath
+    fi
     echo "shrl () { echo \"reloaded shell\" && exec -l $SHELL ; }" >> $aliasPath
     if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
         echo "zshrl () {" >> $aliasPath
@@ -154,7 +163,7 @@ main() {
     # echo "home () { cd '$HOME' ;}" >> $aliasPath
     # echo "Home () { cd '$HOME' ;}" >> $aliasPath
     echo "icloud () { cd '$HOME/Library/Mobile Documents/com~apple~CloudDocs' ;}" >> $aliasPath
-    echo "iCloud () { cd '$HOME/Library/Mobile Documents/com~apple~CloudDocs' ;}" >> $aliasPath
+    echo "iCloud () { cd '$HOME/Library/Mobile Documents/com~apple ~CloudDocs' ;}" >> $aliasPath
     echo "dropbox () { cd '$HOME/Dropbox' ;}" >> $aliasPath
     echo "Dropbox () { cd '$HOME/Dropbox' ;}" >> $aliasPath
     if [ "$(uname)" == "Darwin" ]; then 
@@ -245,13 +254,13 @@ main() {
         echo "    curl -sLo /tmp/ic \"\$tgFile\" ;" >> $aliasPath
         echo "    tgFile=/tmp/iconchange" >> $aliasPath
         echo "  fi" >> $aliasPath
-        echo "  rm -rf \"\$destFile\"\$'/Icon\\\r'" >> $aliasPath
-        echo "  sips -i \"\$tgFile\" > /dev/null" >> $aliasPath
-        echo "  DeRez -only icns \"\$tgFile\" > /tmp/icnch.rsrc" >> $aliasPath
-        echo "  Rez -append /tmp/icnch.rsrc -o \"\$destFile\"\$'/Icon\\\r'" >> $aliasPath
-        echo "  SetFile -a C \"\$destFile\"" >> $aliasPath
-        echo "  SetFile -a V \"\$destFile\"\$'/Icon\\\r'" >> $aliasPath
-        echo "  rm -rf /tmp/icnch /tmp/tmp/icnch.rsrc" >> $aliasPath
+        echo "  sudo rm -rf \"\$destFile\"\$'/Icon\\\r'" >> $aliasPath
+        echo "  sudo sips -i \"\$tgFile\" > /dev/null" >> $aliasPath
+        echo "  sudo DeRez -only icns \"\$tgFile\" > /tmp/icnch.rsrc" >> $aliasPath
+        echo "  sudo Rez -append /tmp/icnch.rsrc -o \"\$destFile\"\$'/Icon\\\r'" >> $aliasPath
+        echo "  sudo SetFile -a C \"\$destFile\"" >> $aliasPath
+        echo "  sudo SetFile -a V \"\$destFile\"\$'/Icon\\\r'" >> $aliasPath
+        echo "  sudo rm -rf /tmp/icnch /tmp/tmp/icnch.rsrc" >> $aliasPath
         echo "}" >> $aliasPath
     fi
     # Alias command part
