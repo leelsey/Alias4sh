@@ -247,21 +247,31 @@ main() {
     echo "  }" >> $aliasPath
     echo "fi" >> $aliasPath 
     if [ "$(uname)" == "Darwin" ]; then 
-        echo "chicn () {" >> $aliasPath
-        echo "  tgFile=\"\$1\"" >> $aliasPath
-        echo "  destFile=\"\$2\"" >> $aliasPath
-        echo "  if [[ \"\$tgFile\" =~ ^https?:// ]]; then" >> $aliasPath
-        echo "    curl -sLo /tmp/ic \"\$tgFile\" ;" >> $aliasPath
-        echo "    tgFile=/tmp/iconchange" >> $aliasPath
-        echo "  fi" >> $aliasPath
-        echo "  sudo rm -rf \"\$destFile\"\$'/Icon\\\r'" >> $aliasPath
-        echo "  sudo sips -i \"\$tgFile\" > /dev/null" >> $aliasPath
-        echo "  sudo DeRez -only icns \"\$tgFile\" > /tmp/icnch.rsrc" >> $aliasPath
-        echo "  sudo Rez -append /tmp/icnch.rsrc -o \"\$destFile\"\$'/Icon\\\r'" >> $aliasPath
-        echo "  sudo SetFile -a C \"\$destFile\"" >> $aliasPath
-        echo "  sudo SetFile -a V \"\$destFile\"\$'/Icon\\\r'" >> $aliasPath
-        echo "  sudo rm -rf /tmp/icnch /tmp/tmp/icnch.rsrc" >> $aliasPath
-        echo "}" >> $aliasPath
+        echo "if ! { [ -f $HOME/.chicn/chicn ] && [ -f /opt/homebrew/bin/chicn] && [ -f /usr/local/bin/chicn]; }; then" >> $aliasPath
+        echo "  chicn () {" >> $aliasPath
+        echo "    if [ \$# -eq 2 ]; then" >> $aliasPath
+        echo "      if [[ \"\$1\" =~ ^https?:// ]]; then" >> $aliasPath
+        echo "        curl -sLo /tmp/ic \"\$1\" ;" >> $aliasPath
+        echo "        1=/tmp/iconchange" >> $aliasPath
+        echo "      fi" >> $aliasPath
+        echo "      if ! [ -f \$1 ]; then" >> $aliasPath
+        echo "        echo \"chicn: cannot stat '\$1': No such file\"" >> $aliasPath
+        echo "      elif ! [ -d \$2 ]; then" >> $aliasPath
+        echo "        echo \"chicn: cannot stat '\$2': No such directory\"" >> $aliasPath
+        echo "      else" >> $aliasPath 
+        echo "        sudo rm -rf \"\$2\"\$'/Icon\\\r'" >> $aliasPath
+        echo "        sips -i \"\$1\" > /dev/null" >> $aliasPath
+        echo "        DeRez -only icns \"\$1\" > /tmp/icnch.rsrc" >> $aliasPath
+        echo "        sudo Rez -append /tmp/icnch.rsrc -o \"\$2\"\$'/Icon\\\r'" >> $aliasPath
+        echo "        sudo SetFile -a C \"\$2\"" >> $aliasPath
+        echo "        sudo SetFile -a V \"\$2\"\$'/Icon\\\r'" >> $aliasPath
+        echo "      fi" >> $aliasPath 
+        echo "      rm -rf /tmp/icnch /tmp/icnch.rsrc" >> $aliasPath
+        echo "   else" >> $aliasPath
+        echo "     echo \"chicn: wrong usage\"" >> $aliasPath
+        echo "   fi" >> $aliasPath
+        echo "  }" >> $aliasPath
+        echo "fi" >> $aliasPath 
     fi
     # Alias command part
     echo "\n\n# ALIAS FOR COMMAND" >> $aliasPath
