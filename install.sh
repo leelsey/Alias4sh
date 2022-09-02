@@ -22,11 +22,18 @@ main() {
     echo "  admin () { command sudo -i ; } " >> $aliasPath
     echo "fi" >> $aliasPath
     if [ "$(uname)" == "Darwin" ]; then
-        echo "macreset () {" >> $aliasPath
+        echo "resmac () {" >> $aliasPath
         echo "  defaults delete com.apple.dock ;" >> $aliasPath
-        echo "  killall Dock ; defaults write com.apple.dock ResetLaunchPad -bool true ;" >> $aliasPath
-        echo "  killall Finder ;" >> $aliasPath
-        echo "  echo \"reseted dock and launchpad\" ;" >> $aliasPath
+        echo "  defaults write com.apple.dock ResetLaunchPad -bool true ;" >> $aliasPath
+        echo "  killall Dock ; echo \"reseted dock and launchpad\" ;" >> $aliasPath
+        echo "}" >> $aliasPath
+        echo "resdock () {" >> $aliasPath
+        echo "  defaults delete com.apple.dock ;" >> $aliasPath
+        echo "  killall Dock ; echo \"reseted dock\" ;" >> $aliasPath
+        echo "}" >> $aliasPath
+        echo "reslaunchpad () {" >> $aliasPath
+        echo "  defaults write com.apple.dock ResetLaunchPad -bool true ;" >> $aliasPath
+        echo "  killall Dock ; echo \"reseted launchpad\" ;" >> $aliasPath
         echo "}" >> $aliasPath
         echo "macrl () { killall Dock ; killall Finder ; echo \"reloaded finder and \"}" >> $aliasPath
     fi
