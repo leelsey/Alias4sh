@@ -158,6 +158,19 @@ main() {
         echo "  defaults write com.apple.dock ResetLaunchPad -bool true ;" >> $aliasPath
         echo "  killall Dock ; echo \"reseted launchpad\" ;" >> $aliasPath
         echo "}" >> $aliasPath
+        echo "macslp () {" >> $aliasPath
+        echo "  if [ \"\$#\" -eq 1 ]; then" >> $aliasPath
+        echo "    if [[ \$1 =~ on ]]; then" >> $aliasPath
+        echo "      sudo pmset -c disablesleep 0 ;" >> $aliasPath
+        echo "    elif [[ \$1 =~ off ]]; then" >> $aliasPath
+        echo "      sudo pmset -c disablesleep 1 ;" >> $aliasPath
+        echo "    else" >> $aliasPath
+        echo "      echo \"usage: macslp on/off \" ;" >> $aliasPath        
+        echo "    fi" >> $aliasPath
+        echo "  else" >> $aliasPath
+        echo "    echo \"usage: macslp on/off \" ;" >> $aliasPath
+        echo "  fi" >> $aliasPath
+        echo "}" >> $aliasPath
         echo "icloud () { cd '$HOME/Library/Mobile Documents/com~apple~CloudDocs' ;}" >> $aliasPath
         echo "iCloud () { cd '$HOME/Library/Mobile Documents/com~apple ~CloudDocs' ;}" >> $aliasPath
     fi
