@@ -21,22 +21,6 @@ main() {
     echo "if [ $UID -ne 0 ]; then" >> $aliasPath
     echo "  admin () { command sudo -i ; } " >> $aliasPath
     echo "fi" >> $aliasPath
-    if [ "$(uname)" == "Darwin" ]; then
-        echo "resmac () {" >> $aliasPath
-        echo "  defaults delete com.apple.dock ;" >> $aliasPath
-        echo "  defaults write com.apple.dock ResetLaunchPad -bool true ;" >> $aliasPath
-        echo "  killall Dock ; echo \"reseted dock and launchpad\" ;" >> $aliasPath
-        echo "}" >> $aliasPath
-        echo "resdock () {" >> $aliasPath
-        echo "  defaults delete com.apple.dock ;" >> $aliasPath
-        echo "  killall Dock ; echo \"reseted dock\" ;" >> $aliasPath
-        echo "}" >> $aliasPath
-        echo "reslaunchpad () {" >> $aliasPath
-        echo "  defaults write com.apple.dock ResetLaunchPad -bool true ;" >> $aliasPath
-        echo "  killall Dock ; echo \"reseted launchpad\" ;" >> $aliasPath
-        echo "}" >> $aliasPath
-        echo "macrl () { killall Dock ; killall Finder ; echo \"reloaded finder and \"}" >> $aliasPath
-    fi
     echo "shrl () { echo \"reloaded shell\" && exec -l $SHELL ; }" >> $aliasPath
     if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
         echo "zshrl () {" >> $aliasPath
@@ -86,9 +70,9 @@ main() {
     echo "chown () { command chown --preserve-root \"\$@\" ; }" >> $aliasPath
     echo "chgrp () { command chgrp --preserve-root \"\$@\" ; }" >> $aliasPath
     echo "rm () { command rm -I --preserve-root \"\$@\" ; } " >> $aliasPath
-    echo "mv () { command mv -i \"\$@\" ; } " >> $aliasPath 
-    echo "cp () { command cp -i \"\$@\" ; } " >> $aliasPath 
-    echo "ln () { command ln -i \"\$@\" ; } " >> $aliasPath 
+    echo "mv () { command mv -i \"\$@\" ; } " >> $aliasPath
+    echo "cp () { command cp -i \"\$@\" ; } " >> $aliasPath
+    echo "ln () { command ln -i \"\$@\" ; } " >> $aliasPath
     # echo "rmdir () { command rmdir -v \"\$@\" ; } " >> $aliasPath
     # echo "mkdir () { command mkdir -v \"\$@\" ; } " >> $aliasPath
     # echo "vi () { command vim \"\$@\" ; }" >> $aliasPath
@@ -120,9 +104,9 @@ main() {
     echo "ll () { ls -l \"\$@\" ; }" >> $aliasPath
     echo "ll. () { ls -ld .* \"\$@\" ; }" >> $aliasPath
     echo "la () { ls -A \"\$@\" ; }" >> $aliasPath
-    echo "lal () { ls -Al \"\$@\" ; }" >> $aliasPath 
+    echo "lal () { ls -Al \"\$@\" ; }" >> $aliasPath
     echo "lla () { ls -al \"\$@\" ; }" >> $aliasPath
-    echo "lst () { ls -alhF \"\$@\" ; }" >> $aliasPath 
+    echo "lst () { ls -alhF \"\$@\" ; }" >> $aliasPath
     echo "lsd () { ls -A --group-directories-first \"\$@\" ; }" >> $aliasPath
     echo "lad () { ls -Al --group-directories-first \"\$@\" ; }" >> $aliasPath
     echo "lld () { ls -al --group-directories-first \"\$@\" ; }" >> $aliasPath
@@ -160,19 +144,29 @@ main() {
     if [ "$(uname)" == "Darwin" ]; then
         echo "pinga () { ping -a --apple-connect --apple-time \"\$@\" ; }" >> $aliasPath
         echo "ip () { command ipconfig \"\$@\" ;  }" >> $aliasPath
-        echo "resetdock () { defaults delete com.apple.dock ; killall Dock ; }" >> $aliasPath
-        echo "resetlaunchpad () { defaults write com.apple.dock ResetLaunchPad -bool true ; killall Dock ; }" >> $aliasPath
+        echo "macrl () { killall Dock ; killall Finder ; echo \"reloaded finder and \"}" >> $aliasPath
+        echo "resmac () {" >> $aliasPath
+        echo "  defaults delete com.apple.dock ;" >> $aliasPath
+        echo "  defaults write com.apple.dock ResetLaunchPad -bool true ;" >> $aliasPath
+        echo "  killall Dock ; echo \"reseted dock and launchpad\" ;" >> $aliasPath
+        echo "}" >> $aliasPath
+        echo "resdock () {" >> $aliasPath
+        echo "  defaults delete com.apple.dock ;" >> $aliasPath
+        echo "  killall Dock ; echo \"reseted dock\" ;" >> $aliasPath
+        echo "}" >> $aliasPath
+        echo "reslaunchpad () {" >> $aliasPath
+        echo "  defaults write com.apple.dock ResetLaunchPad -bool true ;" >> $aliasPath
+        echo "  killall Dock ; echo \"reseted launchpad\" ;" >> $aliasPath
+        echo "}" >> $aliasPath
+        echo "icloud () { cd '$HOME/Library/Mobile Documents/com~apple~CloudDocs' ;}" >> $aliasPath
+        echo "iCloud () { cd '$HOME/Library/Mobile Documents/com~apple ~CloudDocs' ;}" >> $aliasPath
     fi
+    echo "dropbox () { cd '$HOME/Dropbox' ;}" >> $aliasPath
+    echo "Dropbox () { cd '$HOME/Dropbox' ;}" >> $aliasPath
     echo "dif () { diff \$1 \$2 | bat -l diff ; }" >> $aliasPath
     echo "dfr () { diff -u \$1 \$2 | diffr --line-numbers; }" >> $aliasPath
     echo "gsdif () { while [[ \$# -gt 0 ]] ; do ; git show \"\${1}\" | bat -l diff ; shift ; done ; }" >> $aliasPath
     echo "gsdfr () { while [[ \$# -gt 0 ]] ; do ; git show \"\${1}\" | diffr --line-numbers ; shift ; done ; }" >> $aliasPath
-    # echo "home () { cd '$HOME' ;}" >> $aliasPath
-    # echo "Home () { cd '$HOME' ;}" >> $aliasPath
-    echo "icloud () { cd '$HOME/Library/Mobile Documents/com~apple~CloudDocs' ;}" >> $aliasPath
-    echo "iCloud () { cd '$HOME/Library/Mobile Documents/com~apple ~CloudDocs' ;}" >> $aliasPath
-    echo "dropbox () { cd '$HOME/Dropbox' ;}" >> $aliasPath
-    echo "Dropbox () { cd '$HOME/Dropbox' ;}" >> $aliasPath
     if [ "$(uname)" == "Darwin" ]; then 
         echo "if ! { [ -f $HOME/.p/p ] && [ -f /opt/homebrew/bin/javactl] && [ -f /usr/local/bin/p]; }; then" >> $aliasPath
     elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
@@ -252,7 +246,7 @@ main() {
     echo "      echo \"javahome: wrong usage\"" >> $aliasPath
     echo "    fi" >> $aliasPath
     echo "  }" >> $aliasPath
-    echo "fi" >> $aliasPath 
+    echo "fi" >> $aliasPath
     if [ "$(uname)" == "Darwin" ]; then 
         echo "if ! { [ -f $HOME/.chicn/chicn ] && [ -f /opt/homebrew/bin/chicn] && [ -f /usr/local/bin/chicn]; }; then" >> $aliasPath
         echo "  chicn () {" >> $aliasPath
@@ -265,20 +259,20 @@ main() {
         echo "        echo \"chicn: cannot stat '\$1': No such file\"" >> $aliasPath
         echo "      elif ! [ -d \$2 ]; then" >> $aliasPath
         echo "        echo \"chicn: cannot stat '\$2': No such directory\"" >> $aliasPath
-        echo "      else" >> $aliasPath 
+        echo "      else" >> $aliasPath
         echo "        sudo rm -rf \"\$2\"\$'/Icon\\\r'" >> $aliasPath
         echo "        sips -i \"\$1\" > /dev/null" >> $aliasPath
         echo "        DeRez -only icns \"\$1\" > /tmp/icnch.rsrc" >> $aliasPath
         echo "        sudo Rez -append /tmp/icnch.rsrc -o \"\$2\"\$'/Icon\\\r'" >> $aliasPath
         echo "        sudo SetFile -a C \"\$2\"" >> $aliasPath
         echo "        sudo SetFile -a V \"\$2\"\$'/Icon\\\r'" >> $aliasPath
-        echo "      fi" >> $aliasPath 
+        echo "      fi" >> $aliasPath
         echo "      rm -rf /tmp/icnch /tmp/icnch.rsrc" >> $aliasPath
         echo "   else" >> $aliasPath
         echo "     echo \"chicn: wrong usage\"" >> $aliasPath
         echo "   fi" >> $aliasPath
         echo "  }" >> $aliasPath
-        echo "fi" >> $aliasPath 
+        echo "fi" >> $aliasPath
     fi
     # Alias command part
     echo "\n\n# ALIAS FOR COMMAND" >> $aliasPath
