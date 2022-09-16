@@ -144,7 +144,7 @@ main() {
     if [ "$(uname)" == "Darwin" ]; then
         echo "pinga () { ping -a --apple-connect --apple-time \"\$@\" ; }" >> $aliasPath
         echo "ip () { command ipconfig \"\$@\" ;  }" >> $aliasPath
-        echo "macrl () { killall Dock ; killall Finder ; echo \"reloaded finder and \"}" >> $aliasPath
+        echo "macrl () { killall SystemUIServer ; killall Dock ; killall Finder ; echo \"reloaded macOS GUI\"}" >> $aliasPath
         echo "resmac () {" >> $aliasPath
         echo "  defaults delete com.apple.dock ;" >> $aliasPath
         echo "  defaults write com.apple.dock ResetLaunchPad -bool true ;" >> $aliasPath
