@@ -66,15 +66,15 @@ main() {
 
     # About default commands options
     echo "\n# Default Option" >> $aliasPath
-    echo "chmod () { command chmod --preserve-root \"\$@\" ; }" >> $aliasPath
-    echo "chown () { command chown --preserve-root \"\$@\" ; }" >> $aliasPath
-    echo "chgrp () { command chgrp --preserve-root \"\$@\" ; }" >> $aliasPath
-    echo "rm () { command rm -I --preserve-root \"\$@\" ; } " >> $aliasPath
+    echo "rm () { command rm -I \"\$@\" ; } " >> $aliasPath
     echo "mv () { command mv -i \"\$@\" ; } " >> $aliasPath
     echo "cp () { command cp -i \"\$@\" ; } " >> $aliasPath
     echo "ln () { command ln -i \"\$@\" ; } " >> $aliasPath
     # echo "rmdir () { command rmdir -v \"\$@\" ; } " >> $aliasPath
     # echo "mkdir () { command mkdir -v \"\$@\" ; } " >> $aliasPath
+    # echo "chmod () { command chmod --preserve-root \"\$@\" ; }" >> $aliasPath
+    # echo "chown () { command chown --preserve-root \"\$@\" ; }" >> $aliasPath
+    # echo "chgrp () { command chgrp --preserve-root \"\$@\" ; }" >> $aliasPath
     # echo "vi () { command vim \"\$@\" ; }" >> $aliasPath
 
     # About colourising for output
