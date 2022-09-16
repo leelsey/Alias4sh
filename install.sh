@@ -287,6 +287,13 @@ main() {
         echo "  }" >> $aliasPath
         echo "fi" >> $aliasPath
     fi
+    echo "dockerun () {" >> $aliasPath
+    echo "  if ! docker info > /dev/null 2>&1; then" >> $aliasPath
+    echo "    echo \"dockerun false: Docker isn't running\"" >> $aliasPath
+    echo "  else" >> $aliasPath
+    echo "    echo \"dockerun true: Docker is running\"" >> $aliasPath
+    echo "  fi" >> $aliasPath
+    echo "}" >> $aliasPath
     # Alias command part
     echo "\n\n# ALIAS FOR COMMAND" >> $aliasPath
     echo "alias da='date'" >> $aliasPath
